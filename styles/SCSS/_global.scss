@@ -1,0 +1,42 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	display: block;
+}
+
+a,
+button {
+	display: inline-block;
+	border: none;
+	text-decoration: none;
+	color: inherit;
+}
+
+ul,
+ol {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.wrapper {
+	max-width: 1080px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.landingPage {
+	display: block;
+}
+
+.drinkSpotlight {
+	display: none;
+}

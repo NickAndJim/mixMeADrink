@@ -1,0 +1,50 @@
+// variables
+$accent: #E4A436;
+$primary: #709B6B;
+$secondary: #345231;
+$black: #1F1F1F;
+$white: #F6F6F6;
+
+$headingStack: "Abril Fatface", cursive;
+$bodyStack: "Montserrat", sans-serif;
+
+
+//mixins
+@mixin flexRow($justify: center) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify;
+    align-items: center;
+}
+
+@mixin flexCol($align: center) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $align;
+    align-items: center;
+}
+
+//media query mixins
+@mixin maxWidth950 {
+	@media (max-width: 950px) {
+		@content;
+	}
+}
+
+@mixin maxWidth740 {
+	@media (max-width: 740px) {
+		@content;
+	}
+}
+
+@mixin maxWidth600 {
+	@media (max-width: 600px) {
+		@content;
+	}
+}
+
+@mixin maxWidth500 {
+	@media (max-width: 500px) {
+		@content;
+	}
+}
