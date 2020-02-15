@@ -2,8 +2,8 @@ app = {};
 
 app.init = function() {
 	app.getDrinksByName();
-    app.getDrinksByAlcohol();
-    app.getDrinksByIngredient();
+	app.getDrinksByAlcohol();
+	app.getDrinksByIngredient();
 };
 
 $(function() {
@@ -12,8 +12,8 @@ $(function() {
 
 app.getDrinksByName = function() {
 	$("form.drinksByNameForm").on("submit", function(e) {
-        e.preventDefault();
-        const userDrinksInput = $("#drinksByName").val();
+		e.preventDefault();
+		const userDrinksInput = $("#drinksByName").val();
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
 			method: "GET",
@@ -29,7 +29,7 @@ app.getDrinksByName = function() {
 
 app.getDrinksByAlcohol = function() {
 	$("form.drinksByAlcoholForm").on("submit", function(e) {
-        e.preventDefault();
+		e.preventDefault();
 		const userAlcoholInput = $("#drinksByAlcohol").val();
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
@@ -46,13 +46,9 @@ app.getDrinksByAlcohol = function() {
 
 app.getDrinksByIngredient = function() {
 	$("form.drinksByIngredientForm").on("submit", function(e) {
-        e.preventDefault();
-		const userIngredientInput1 = $(
-			"#drinksByIngredient1"
-		).val();
-		const userIngredientInput2 = $(
-			"#drinksByIngredient2"
-		).val();
+		e.preventDefault();
+		const userIngredientInput1 = $("#drinksByIngredient1").val();
+		const userIngredientInput2 = $("#drinksByIngredient2").val();
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
 			method: "GET",
