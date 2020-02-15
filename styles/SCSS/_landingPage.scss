@@ -1,3 +1,39 @@
-.landingPage{
-    @include flexRow(flex-start);
+.landingPage {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 6fr 1fr;
+	grid-template-areas:
+		"form gallery gallery"
+		"form gallery gallery";
+		// "footer footer footer";
+    grid-gap: 15px;
+}
+
+
+.drinkFilters {
+	grid-area: form;
+	background: $primary;
+}
+.drinkGallery {
+	grid-area: gallery;
+	background: $primary;
+}
+.footer {
+	grid-area: footer;
+
+	background: $secondary;
+}
+
+.drinkGallery ul {
+	@include flexRow(space-evenly);
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+li {
+	width: 30%;
+	img {
+        width: 100%;
+        height: auto;
+	}
 }

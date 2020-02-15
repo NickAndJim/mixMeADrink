@@ -235,6 +235,11 @@ html {
   overflow: hidden;
 }
 
+html {
+  font-size: 62.5%;
+  background: #2a1824;
+}
+
 h1,
 h2,
 h3,
@@ -264,6 +269,12 @@ ol {
   margin: 0;
 }
 
+h1 {
+  color: #fff7c9;
+  margin: 20px auto;
+  font-size: calc(4rem + 20%);
+}
+
 .wrapper {
   max-width: 1080px;
   width: 80%;
@@ -279,6 +290,39 @@ ol {
 }
 
 .landingPage {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 6fr 1fr;
+      grid-template-rows: 6fr 1fr;
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
+  grid-gap: 15px;
+}
+
+.drinkFilters {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: form;
+  background: #fff7c9;
+}
+
+.drinkGallery {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: gallery;
+  background: #fff7c9;
+}
+
+.footer {
+  grid-area: footer;
+  background: #642e68;
+}
+
+.drinkGallery ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -286,10 +330,22 @@ ol {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 10px;
+}
+
+li {
+  width: 30%;
+}
+
+li img {
+  width: 100%;
+  height: auto;
 }

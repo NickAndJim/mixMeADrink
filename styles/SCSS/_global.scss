@@ -1,3 +1,8 @@
+html {
+	font-size: 62.5%;
+	background: $background;;
+}
+
 h1,
 h2,
 h3,
@@ -25,6 +30,12 @@ ol {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
+}
+
+h1 {
+	color: $primary;
+	margin: 20px auto;
+	font-size: calc(4rem + 20%);
 }
 
 .wrapper {
