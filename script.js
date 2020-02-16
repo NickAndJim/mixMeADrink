@@ -4,13 +4,21 @@ app.init = function() {
   app.getDrinksByName();
   app.getDrinksByAlcohol();
   app.getDrinksByIngredient();
+
+  $("header").on("click", function() {
+    $("html,body").animate(
+      {
+        scrollTop: $("main").offset().top
+      },
+      "slow"
+    );
+  });
 };
 
 $(function() {
   app.init();
 });
 
-// this function is attached to the click event for the first user input text box. 
 app.getDrinksByName = function() {
   $("form.drinksByNameForm").on("submit", function(e) {
     e.preventDefault();
@@ -23,13 +31,13 @@ app.getDrinksByName = function() {
         s: userDrinksInput
       }
     }).then(function(response) {
-			//populating the gallery with the data obtained from the ajax call
-      app.populateGallery(response);
+      if (userDrinksInput != "") {
+        app.populateGallery(response);
+      }
     });
   });
 };
 
-// this function is attached to the click event for the second user input text box. 
 app.getDrinksByAlcohol = function() {
   $("form.drinksByAlcoholForm").on("submit", function(e) {
     e.preventDefault();
@@ -42,13 +50,11 @@ app.getDrinksByAlcohol = function() {
         i: userAlcoholInput
       }
     }).then(function(response) {
-
       app.populateGallery(response);
     });
   });
 };
 
-//
 app.getDrinksByIngredient = function() {
   $("form.drinksByIngredientForm").on("submit", function(e) {
     e.preventDefault();
@@ -81,7 +87,7 @@ app.getDrinksByIngredient = function() {
         app.populateGallery(response2);
       });
     } else if (userIngredientInput1 && userIngredientInput2) {
-      const finalArray = {drinks:[]};
+      const finalArray = { drinks: [] };
       $.when($call1, $call2).done(function(drinksArray1, drinksArray2) {
         differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
           drinksArray2[0].drinks.forEach(function(itemFromArray2) {
@@ -90,9 +96,9 @@ app.getDrinksByIngredient = function() {
               finalArray.drinks.push(itemFromArray1);
             }
           });
-				});
-				
-				app.populateGallery(finalArray);
+        });
+
+        app.populateGallery(finalArray);
       });
     }
   });
@@ -101,17 +107,26 @@ app.getDrinksByIngredient = function() {
 app.populateGallery = function(response) {
   $(".drinkGallery ul").empty();
   if (response) {
-    response.drinks.forEach(function(item) {
+    let i = 0;
+    let countDown = 9;
+    modArray = response.drinks.slice(0, 9);
+    modArray.forEach(function(item) {
+      i++;
       const drinkTitle = item.strDrink;
       const drinkID = item.idDrink;
       const drinkUrl = item.strDrinkThumb;
       const htmlToAppend = `
-				<li class="drinkGalleryItem">
-					<h3 data-id="${drinkID}">${drinkTitle}</h3>
-					<img src="${drinkUrl}" alt="${drinkTitle}" />
-				</li>
+			<li class="drinkGalleryItem appearJS" tabindex="0">
+			<h3 data-id="${drinkID}">${drinkTitle}</h3>
+			<img src="${drinkUrl}" alt="${drinkTitle}" />
+			</li>
 			`;
-      $(".drinkGallery ul").append(htmlToAppend);
+
+      const appending = setTimeout(function() {
+        $(".drinkGallery ul").append(htmlToAppend);
+        countDown -= 1;
+      }, 200 + i);
+      i += 200;
     });
   }
 };
