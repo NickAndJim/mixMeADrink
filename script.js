@@ -10,6 +10,7 @@ $(function() {
   app.init();
 });
 
+// this function is attached to the click event for the first user input text box. 
 app.getDrinksByName = function() {
   $("form.drinksByNameForm").on("submit", function(e) {
     e.preventDefault();
@@ -22,11 +23,13 @@ app.getDrinksByName = function() {
         s: userDrinksInput
       }
     }).then(function(response) {
+			//populating the gallery with the data obtained from the ajax call
       app.populateGallery(response);
     });
   });
 };
 
+// this function is attached to the click event for the second user input text box. 
 app.getDrinksByAlcohol = function() {
   $("form.drinksByAlcoholForm").on("submit", function(e) {
     e.preventDefault();
@@ -39,11 +42,13 @@ app.getDrinksByAlcohol = function() {
         i: userAlcoholInput
       }
     }).then(function(response) {
-      app.populateGallery(respone);
+
+      app.populateGallery(response);
     });
   });
 };
 
+//
 app.getDrinksByIngredient = function() {
   $("form.drinksByIngredientForm").on("submit", function(e) {
     e.preventDefault();
