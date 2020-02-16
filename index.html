@@ -1,92 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>Mix Me A Drink</title>
-		<script
-			src="https://code.jquery.com/jquery-3.4.0.min.js"
-			integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-			crossorigin="anonymous"
-		></script>
 
-		<link rel="stylesheet" href="./styles/style.css" />
-	</head>
-	<body>
-		<header>
-			<div class="wrapper headerWrapper">
-				<div class="titleContainer">
-					
-					<h2>
-						Mixology isn't magic, but we can convince your friends otherwise
-					</h2>
-					<h1>Mix Me A Drink</h1>
-				</div>
-				<div class="decoration"></div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Mix Me A Drink</title>
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+		integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 
-				<div class="decoration2">
-					<span class="dot1">.</span>
-					<span class="dot2">.</span>
-					<span class="dot3">.</span>
-				</div>
+	<link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body>
+	<header>
+		<div class="wrapper headerWrapper">
+			<div class="titleContainer">
+				<h2>
+					Mixology isn't magic, but we can convince your friends otherwise
+				</h2>
+				<h1>Mix Me A Drink</h1>
 			</div>
-		</header>
-		<main>
-			<div class="wrapper landingPage">
-				<section class="drinkFilters">
-					<h2>Search drinks by:</h2>
-					<form
-						action="#"
-						name="drinksByNameForm"
-						class="drinksByNameForm form"
-					>
-						<label for="drinksByName">Drink by Name</label
-						><input type="text" name="drinksByName" id="drinksByName" />
-						<button type="submit">Mix me A Drink</button>
-					</form>
-					<form
-						action="#"
-						name="drinksByAlcoholForm"
-						class="drinksByAlcoholForm form"
-					>
-						<label for="drinksByAlcohol">Drink by Alcohol</label
-						><input type="text" name="drinksByAlcohol" id="drinksByAlcohol" />
-						<button type="submit">Mix me A Drink</button>
-					</form>
-					<form
-						action="#"
-						name="drinksByIngredientForm"
-						class="drinksByIngredientForm form"
-					>
-						<label for="drinksByIngredient1">Drink by Ingredient</label
-						><input
-							type="text"
-							name="drinksByIngredient1"
-							id="drinksByIngredient1"
-						/>
-						<label for="drinksByIngredient2">Drink by Ingredient</label
-						><input
-							type="text"
-							name="drinksByIngredient2"
-							id="drinksByIngredient2"
-						/>
-						<button type="submit">Mix me A Drink</button>
-					</form>
-					<form
-						action="#"
-						name="feelingLuckyForm"
-						class="feelingLuckyForm form"
-					>
-						<label for="feelingLucky">I'm Feeling Lucky(Punk)</label
-						><input type="text" name="feelingLucky" id="feelingLucky" />
-						<button type="submit">Mix me A Drink</button>
-					</form>
-				</section>
-				<!-- end of drink filters -->
-				<section class="drinkGallery">
-					<ul>
-						<!-- <li class="hiddenDrink drinkGalleryItem drink1">
+			<div class="decoration"></div>
+
+			<div class="decoration2">
+				<span class="dot1">.</span>
+				<span class="dot2">.</span>
+				<span class="dot3">.</span>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="wrapper landingPage">
+			<section class="drinkFilters">
+				<form action="#" name="drinksByNameForm" class="drinksByNameForm form">
+					<label for="drinksByName">Drinks by Name</label><input type="text" name="drinksByName" id="drinksByName"
+						placeholder="ie. Long Island Iced Tea" />
+					<button type="submit">Mix me A Drink</button>
+				</form>
+				<form action="#" name="drinksByAlcoholForm" class="drinksByAlcoholForm form">
+					<label for="drinksByAlcohol">Drinks by Alcohol</label><input type="text" name="drinksByAlcohol"
+						id="drinksByAlcohol" placeholder="ie. Tequila" />
+					<button type="submit">Mix me A Drink</button>
+				</form>
+				<form action="#" name="drinksByIngredientForm" class="drinksByIngredientForm form">
+					<label for="drinksByIngredient1">Drinks by Ingredient</label>
+					<input type="text" name="drinksByIngredient1" id="drinksByIngredient1" />
+					<label for="drinksByIngredient2">Second Ingredient (optional)</label><input type="text"
+						name="drinksByIngredient2" id="drinksByIngredient2" />
+					<button type="submit">Mix me A Drink</button>
+				</form>
+
+				<form action="#" name="feelingLuckyForm" class="feelingLuckyForm form">
+					<label for="feelingLucky">I'm Feeling Lucky</label><input type="text" name="feelingLucky" id="feelingLucky" />
+					<button type="submit">Mix me A Drink</button>
+				</form>
+			</section>
+			<!-- end of drink filters -->
+			<section class="drinkGallery">
+				<ul>
+					<!-- <li class="hiddenDrink drinkGalleryItem drink1">
 							<h3>drink name</h3>
 							<img src="https://placebear.com/300/300" alt="" />
 						</li>
@@ -110,83 +83,80 @@
 							<h3>drink name</h3>
 							<img src="https://placebear.com/300/300" alt="" />
 						</li> -->
-					</ul>
-				</section>
-			</div>
+				</ul>
+			</section>
+		</div>
 
-			<div class="wrapper drinkSpotlight">
-				<section class="drinkMain">
-					<div class="imgContainer">
-						<img src="https://placebear.com/400/400" alt="" />
+		<div class="wrapper drinkSpotlight">
+			<section class="drinkMain">
+				<div class="imgContainer">
+					<img src="https://placebear.com/400/400" alt="" />
+				</div>
+				<h2>Drink Title</h2>
+				<div class="drinkInfo">
+					<div class="ingredientParent">
+						<h3>ingredients</h3>
+						<ul class="ingredientList">
+							
+						</ul>
 					</div>
-					<h2>Drink Title</h2>
-					<div class="drinkInfo">
-						<div class="ingredientParent">
-							<h3>ingredients</h3>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<div class="instructionParent">
-							<h3>how to mix it</h3>
-							<p>
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio,
-								repellendus totam sint reiciendis vero ab blanditiis itaque qui
-								similique voluptatem!
-							</p>
-						</div>
-						<p>put it in a glass you dumbass</p>
+					<div class="instructionParent">
+						<h3>how to mix it</h3>
+						<p>
+							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio,
+							repellendus totam sint reiciendis vero ab blanditiis itaque qui
+							similique voluptatem!
+						</p>
 					</div>
-					<!-- end drink info-->
-				</section>
-				<!--end drink main-->
-				<section class="relatedDrinks">
-					<h2>related drinks</h2>
-					<ul>
-						<li>
-							<div class="smallImg">
-								<div class="smallDrinkTitle"></div>
-								<img src="" alt="" />
-							</div>
-						</li>
-						<li>
-							<div class="smallImg">
-								<div class="smallDrinkTitle"></div>
-								<img src="" alt="" />
-							</div>
-						</li>
-						<li>
-							<div class="smallImg">
-								<div class="smallDrinkTitle"></div>
-								<img src="" alt="" />
-							</div>
-						</li>
-						<li>
-							<div class="smallImg">
-								<div class="smallDrinkTitle"></div>
-								<img src="" alt="" />
-							</div>
-						</li>
-						<li>
-							<div class="smallImg">
-								<div class="smallDrinkTitle"></div>
-								<img src="" alt="" />
-							</div>
-						</li>
-						<li>
-							<div class="smallImg">
-								<div class="smallDrinkTitle"></div>
-								<img src="" alt="" />
-							</div>
-						</li>
-					</ul>
-				</section>
-			</div>
-		</main>
-		<script src="script.js"></script>
-	</body>
+					<p>put it in a glass you dumbass</p>
+				</div>
+				<!-- end drink info-->
+			</section>
+			<!--end drink main-->
+			<section class="relatedDrinks">
+				<h2>related drinks</h2>
+				<ul>
+					<li>
+						<div class="smallImg">
+							<div class="smallDrinkTitle"></div>
+							<img src="" alt="" />
+						</div>
+					</li>
+					<li>
+						<div class="smallImg">
+							<div class="smallDrinkTitle"></div>
+							<img src="" alt="" />
+						</div>
+					</li>
+					<li>
+						<div class="smallImg">
+							<div class="smallDrinkTitle"></div>
+							<img src="" alt="" />
+						</div>
+					</li>
+					<li>
+						<div class="smallImg">
+							<div class="smallDrinkTitle"></div>
+							<img src="" alt="" />
+						</div>
+					</li>
+					<li>
+						<div class="smallImg">
+							<div class="smallDrinkTitle"></div>
+							<img src="" alt="" />
+						</div>
+					</li>
+					<li>
+						<div class="smallImg">
+							<div class="smallDrinkTitle"></div>
+							<img src="" alt="" />
+						</div>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</main>
+	<script src="script.js"></script>
+</body>
+
 </html>

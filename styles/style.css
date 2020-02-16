@@ -282,7 +282,7 @@ ol {
 }
 
 .drinkSpotlight {
-  display: none;
+  background: #F9DEC9;
 }
 
 .headerWrapper {
@@ -649,4 +649,12 @@ li img {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
   border: 2px solid #8ce8fb;
+}
+
+.drinkSpotlight {
+  color: black;
+}
+
+.drinkSpotlight .ingredientList li {
+  opacity: 1;
 }

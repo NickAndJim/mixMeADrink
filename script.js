@@ -3,7 +3,8 @@ app = {};
 app.init = function() {
   app.getDrinksByName();
   app.getDrinksByAlcohol();
-  app.getDrinksByIngredient();
+	app.getDrinksByIngredient();
+	app.populateSpotlight();
 
   $("header").on("click", function() {
     $("html,body").animate(
@@ -116,8 +117,8 @@ app.populateGallery = function(response) {
       const drinkID = item.idDrink;
       const drinkUrl = item.strDrinkThumb;
       const htmlToAppend = `
-			<li class="drinkGalleryItem appearJS" tabindex="0">
-			<h3 data-id="${drinkID}">${drinkTitle}</h3>
+			<li data-id="${drinkID}" class="drinkGalleryItem appearJS" tabindex="0">
+			<h3>${drinkTitle}</h3>
 			<img src="${drinkUrl}" alt="${drinkTitle}" />
 			</li>
 			`;
@@ -131,15 +132,38 @@ app.populateGallery = function(response) {
   }
 };
 
-app.populateSpotlight = function(spotlightID) {
-  $.ajax({
-    url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
-    method: "GET",
-    dataType: "json",
-    data: {
-      i: spotlightID
-    }
-  }).then(function(response) {
-    console.log(response);
-  });
+
+
+app.populateSpotlight = function() {
+	$("ul").on("click", "li", function() {
+		const spotlightID = $(this).data("id");
+		$.ajax({
+			url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+			method: "GET",
+			dataType: "json",
+			data: {
+				i: spotlightID
+			}
+		}).then(function(response) {
+			const drinkInstruction = response.drinks[0].strInstructions;
+			const drinkName = response.drinks[0].strDrink;
+			const drinkGlass = response.drinks[0].strGlass;
+			for (i = 0; i <= 15; i++ ) {
+				ingredientType = `strIngredient${i}`
+				ingredientAmount = `strMeasure${i}`
+
+				
+				if (response.drinks[0][ingredientType]) {
+					const coolWhip = `
+						<li>
+							<p>${response.drinks[0][ingredientType]} ${response.drinks[0][ingredientAmount]} a word</p>
+						</li>
+					`;
+					$(".ingredientList").append(coolWhip);
+					
+				}
+			}
+		});
+
+	})
 };
