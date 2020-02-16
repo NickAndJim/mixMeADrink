@@ -4,8 +4,6 @@ app.init = function() {
 	app.getDrinksByName();
 	app.getDrinksByAlcohol();
 	app.getDrinksByIngredient();
-
-
 };
 
 $(function() {
