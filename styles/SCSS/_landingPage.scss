@@ -20,6 +20,10 @@ header {
 	overflow-y: hidden;
 }
 
+.appearJS {
+	animation: appear 0.5s ease forwards;
+}
+
 @keyframes appear {
 	0%,
 	10% {
@@ -35,19 +39,46 @@ header {
 	border-radius: 10px;
 	padding: 20px;
 	margin: 20px auto;
-	width: 100%;
-	top: 100px;
+	width: 80%;
+	top: 200px;
 	font-family: $mainStack;
 	color: $accent;
 
 	h1 {
+		position: relative;
 		font-size: calc(6rem + 20%);
 		margin: 20px 0;
+		animation: slideInLeft 2s forwards;
 	}
 	h2 {
+		position: relative;
 		text-align: right;
-		opacity: 0.8;
+		opacity: 0;
 		margin: 20px;
+		right: -100px;
+		animation: slideInRight 2s ease 0.5s forwards;
+	}
+}
+
+@keyframes slideInLeft {
+	0% {
+		left: -100px;
+		opacity: 0;
+	}
+	100% {
+		left: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes slideInRight {
+	0% {
+		right: -100px;
+		opacity: 0;
+	}
+	100% {
+		right: 0;
+		opacity: 0.8;
 	}
 }
 
@@ -90,34 +121,34 @@ header {
 
 .decoration2 {
 	@include flexCol;
-		position: relative;
-		color: $accent;
-		font-size: 4rem;
-		margin: 60vh auto 0;
+	position: relative;
+	color: $accent;
+	font-size: 4rem;
+	margin: 60vh auto 0;
 
-		span {
-			line-height: 0.5;
-			margin:0;
-			opacity: 0;
-			animation: appear 1.5s alternate ease-in-out infinite;
-		}
+	span {
+		line-height: 0.5;
+		margin: 0;
+		opacity: 0;
+		animation: appear 1.5s alternate ease-in-out infinite;
+	}
 
-		.dot1{
-			animation-delay: 2s;
-		}
-		.dot2{
-			animation-delay: 2.5s;
-		}
-		.dot3{
-			animation-delay: 3s;
-		}
+	.dot1 {
+		animation-delay: 2s;
+	}
+	.dot2 {
+		animation-delay: 2.5s;
+	}
+	.dot3 {
+		animation-delay: 3s;
+	}
 }
 
 .landingPage {
 	height: 80vh;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 6fr 1fr;
+	grid-template-rows: auto;
 	grid-template-areas:
 		"form gallery gallery"
 		"form gallery gallery";
@@ -127,12 +158,35 @@ header {
 .drinkFilters {
 	grid-area: form;
 	background: url(../assets/backsplash.jpg), black;
+	// box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
 	background-size: cover;
-	box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+	@include flexCol(space-between);
+	form {
+		width: 100%;
+		padding: 10px;
+		font-size: 2rem;
+	}
 }
+
+button,
+input {
+	padding: 10px;
+	width: 100%;
+}
+label,
+h2 {
+	color: $accent;
+}
+button {
+	background: $secondary;
+}
+
+input {
+	opacity: 0.5;
+}
+
 .drinkGallery {
 	grid-area: gallery;
-	background: $accent;
 }
 .footer {
 	grid-area: footer;
@@ -141,15 +195,58 @@ header {
 }
 
 .drinkGallery ul {
-	@include flexRow(space-evenly);
+	@include flexRow(flex-start);
 	flex-wrap: wrap;
 	padding: 10px;
+
+	li:hover,
+	li:focus {
+		img {
+			filter: brightness(100%);
+		}
+		h3 {
+			text-shadow: 1px 1px 2px black;
+		}
+	}
+}
+
+h3 {
+
+	color: $white;
+	font-size: 2rem;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
 }
 
 li {
-	width: 30%;
+	position: relative;
+	opacity: 0;
+	width: calc(33% - 10px);
+	margin: 5px;
+
+	&:first-of-type img {
+		border-radius: 20px 0 0 0;
+	}
+	&:nth-of-type(3) img {
+		border-radius: 0 20px 0 0;
+	}
+
+	// add class name to li for the bottom ones and then apply it after they've been populated
+	&:last-of-type img {
+		border-radius: 0 0 20px 0;
+	}
+	&:nth-last-of-type(3) img {
+		border-radius: 0 0 0 20px;
+	}
+
 	img {
 		width: 100%;
 		height: auto;
+		filter: brightness(50%);
+		transition: 0.2s all;
 	}
 }
