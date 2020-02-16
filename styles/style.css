@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Arima+Madurai|Forum|Poiret+One&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -237,7 +238,7 @@ html {
 
 html {
   font-size: 62.5%;
-  background: #2a1824;
+  background: black;
 }
 
 h1,
@@ -255,7 +256,8 @@ img {
 }
 
 a,
-button {
+button,
+input {
   display: inline-block;
   border: none;
   text-decoration: none;
@@ -267,12 +269,6 @@ ol {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-
-h1 {
-  color: #fff7c9;
-  margin: 20px auto;
-  font-size: calc(4rem + 20%);
 }
 
 .wrapper {
@@ -289,7 +285,171 @@ h1 {
   display: none;
 }
 
+.headerWrapper {
+  max-width: 1080px;
+  width: 80vw;
+  margin: 0 auto;
+  position: relative;
+  height: 120vh;
+}
+
+header {
+  top: 0;
+  background-image: url(../assets/mainFinal.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 120vh;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  opacity: 0;
+  -webkit-animation: appear 2s linear forwards;
+          animation: appear 2s linear forwards;
+  overflow-y: hidden;
+}
+
+@-webkit-keyframes appear {
+  0%,
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  0%,
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.titleContainer {
+  position: relative;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 100%;
+  top: 100px;
+  font-family: "Poiret One", cursive;
+  color: #8ce8fb;
+}
+
+.titleContainer h1 {
+  font-size: calc(6rem + 20%);
+  margin: 20px 0;
+}
+
+.titleContainer h2 {
+  text-align: right;
+  opacity: 0.8;
+  margin: 20px;
+}
+
+.decoration {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 350px;
+  width: 350px;
+  background: url(../assets/main2.png);
+  background-size: cover;
+  -webkit-animation: slideUp 4s forwards ease;
+          animation: slideUp 4s forwards ease;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    bottom: -800px;
+  }
+  50% {
+    bottom: 20px;
+  }
+  65% {
+    bottom: -15px;
+  }
+  75% {
+    bottom: 7px;
+  }
+  90% {
+    bottom: -5px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    bottom: -800px;
+  }
+  50% {
+    bottom: 20px;
+  }
+  65% {
+    bottom: -15px;
+  }
+  75% {
+    bottom: 7px;
+  }
+  90% {
+    bottom: -5px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.decoration2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  color: #8ce8fb;
+  font-size: 4rem;
+  margin: 60vh auto 0;
+}
+
+.decoration2 span {
+  line-height: 0.5;
+  margin: 0;
+  opacity: 0;
+  -webkit-animation: appear 1.5s alternate ease-in-out infinite;
+          animation: appear 1.5s alternate ease-in-out infinite;
+}
+
+.decoration2 .dot1 {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.decoration2 .dot2 {
+  -webkit-animation-delay: 2.5s;
+          animation-delay: 2.5s;
+}
+
+.decoration2 .dot3 {
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+
 .landingPage {
+  height: 80vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -305,7 +465,10 @@ h1 {
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: form;
-  background: #fff7c9;
+  background: url(../assets/backsplash.jpg), black;
+  background-size: cover;
+  -webkit-box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+          box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
 }
 
 .drinkGallery {
@@ -314,7 +477,7 @@ h1 {
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: gallery;
-  background: #fff7c9;
+  background: #8ce8fb;
 }
 
 .footer {

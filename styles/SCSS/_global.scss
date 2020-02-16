@@ -1,6 +1,6 @@
 html {
 	font-size: 62.5%;
-	background: $background;;
+	background: black;
 }
 
 h1,
@@ -18,7 +18,8 @@ img {
 }
 
 a,
-button {
+button,
+input {
 	display: inline-block;
 	border: none;
 	text-decoration: none;
@@ -32,16 +33,11 @@ ol {
 	margin: 0;
 }
 
-h1 {
-	color: $primary;
-	margin: 20px auto;
-	font-size: calc(4rem + 20%);
-}
-
 .wrapper {
 	max-width: 1080px;
 	width: 80%;
 	margin: 0 auto;
+	
 }
 
 .landingPage {

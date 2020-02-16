@@ -1,14 +1,17 @@
 // variables
-$primary: #fff7c9;
+// $primary: #fff7c9;
 $secondary: #642e68;
-$tertiary: #a9902b;
-$accent: #c68006;
+// $tertiary: #a9902b;
+$accent: #8ce8fb;
 $black: #1F1F1F;
 $white: #F6F6F6;
 $background:#2a1824;
 
-$headingStack: "Abril Fatface", cursive;
-$bodyStack: "Montserrat", sans-serif;
+
+@import url("https://fonts.googleapis.com/css?family=Arima+Madurai|Forum|Poiret+One&display=swap");
+
+$mainStack: "Poiret One", cursive;
+$bodyStack: serif;
 
 
 //mixins
