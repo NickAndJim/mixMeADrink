@@ -597,8 +597,8 @@ input {
 
 .drinkGallery ul li:hover img,
 .drinkGallery ul li:focus img {
-  -webkit-filter: brightness(100%);
-          filter: brightness(100%);
+  -webkit-filter: brightness(50%);
+          filter: brightness(50%);
 }
 
 .drinkGallery ul li:hover h3,
@@ -642,10 +642,11 @@ li:nth-last-of-type(3) img {
 }
 
 li img {
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
   width: 100%;
   height: auto;
-  -webkit-filter: brightness(50%);
-          filter: brightness(50%);
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
+  border: 2px solid #8ce8fb;
 }
