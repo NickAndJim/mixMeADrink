@@ -52,6 +52,7 @@
 	label,
 	h2 {
 		color: $accent;
+		text-shadow: 1px 1px 2px black, -1px 1px 2px black;
 	}
 	button {
 		background: $accent;
@@ -66,6 +67,7 @@
 	}
 }
 
+// should we make this gallery scrollable if more than 9 results?
 .drinkGallery {
 	grid-area: gallery;
 }
