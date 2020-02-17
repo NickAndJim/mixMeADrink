@@ -114,7 +114,7 @@ app.getDrinksByIngredient = function() {
 };
 //This function will bring the user away from the user input section and be presented with a drink construction information page on a random drink with the data obtained from an ajax call
 app.getDrinksByRandom = function() {
-	$(".feelingLuckyForm").on("click", function() {
+	$(".feelingLuckyForm").on("submit", function() {
 		$.ajax({
       url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
       method: "GET",
@@ -138,7 +138,10 @@ app.getDrinksByRandom = function() {
           $(".ingredientList").append(coolWhip);
         }
       }
-      $(".howToMixIt").text(response.drinks[0].strInstructions);
+      $(".howToMixIt").html(drinkInstruction);
+      $(".drinkSpotlight .drinkName").html(drinkName);
+      $(".drinkSpotlight .glassType").html(drinkGlass);
+      $(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
     });
 	})
 }
@@ -181,7 +184,7 @@ app.populateSpotlight = function() {
 				i: spotlightID
 			}
 		}).then(function(response) {
-      console.log(response.drinks[0].strInstructions)
+      
 			const drinkInstruction = response.drinks[0].strInstructions;
 			const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
@@ -191,15 +194,18 @@ app.populateSpotlight = function() {
 				ingredientAmount = `strMeasure${i}`;
 
 				if (response.drinks[0][ingredientType]) {
-					const coolWhip = `
+					const htmlToAppend = `
 						<li>
 							<p>${response.drinks[0][ingredientType]} ${response.drinks[0][ingredientAmount]}</p>
 						</li>
 					`;
-					$(".ingredientList").append(coolWhip);
+					$(".ingredientList").append(htmlToAppend);
 				}
 			}
-			$(".howToMixIt").text(response.drinks[0].strInstructions);
+			$(".howToMixIt").html(drinkInstruction);
+			$(".drinkSpotlight .drinkName").html(drinkName);
+			$(".drinkSpotlight .glassType").html(drinkGlass);
+			$(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
 		});
 	});
 };
