@@ -116,42 +116,42 @@ app.getDrinksByIngredient = function() {
 app.getDrinksByRandom = function() {
 	$(".feelingLuckyForm").on("submit", function() {
 		$.ajax({
-      url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
-      method: "GET",
-      dataType: "json",
-    }).then(function(response) {
-      $(".ingredientList").empty();
-      const drinkInstruction = response.drinks[0].strInstructions;
-      const drinkName = response.drinks[0].strDrink;
+			url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+			method: "GET",
+			dataType: "json"
+		}).then(function(response) {
+			$(".ingredientList").empty();
+			const drinkInstruction = response.drinks[0].strInstructions;
+			const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
 			const drinkUrl = response.drinks[0].strDrinkThumb;
-			
-      for (i = 0; i <= 15; i++) {
-        ingredientType = `strIngredient${i}`;
-        ingredientAmount = `strMeasure${i}`;
 
-        if (response.drinks[0][ingredientType]) {
-          const coolWhip = `
+			for (i = 0; i <= 15; i++) {
+				ingredientType = `strIngredient${i}`;
+				ingredientAmount = `strMeasure${i}`;
+
+				if (response.drinks[0][ingredientType]) {
+					const coolWhip = `
 						<li>
 							<p>${response.drinks[0][ingredientType]} ${response.drinks[0][ingredientAmount]}</p>
 						</li>
 					`;
-          $(".ingredientList").append(coolWhip);
-        }
-      }
-      $(".howToMixIt").html(drinkInstruction);
-      $(".drinkSpotlight .drinkName").html(drinkName);
-      $(".drinkSpotlight .glassType").html(drinkGlass);
+					$(".ingredientList").append(coolWhip);
+				}
+			}
+			$(".howToMixIt").html(drinkInstruction);
+			$(".drinkSpotlight .drinkName").html(drinkName);
+			$(".drinkSpotlight .glassType").html(drinkGlass);
 			$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
 			$(".drinkGallery").css("display", "none");
-      $(".drinkSpotlight").css("display", "block");
-    });
-	})
-}
+			$(".drinkSpotlight").css("display", "block");
+		});
+	});
+};
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	$(".drinkGallery ul").empty();
-	
+	console.log(response.drinks.length);
 	if (response) {
 		let i = 0;
 		let countDown = 18;
@@ -162,15 +162,31 @@ app.populateGallery = function(response) {
 			const drinkID = item.idDrink;
 			const drinkUrl = item.strDrinkThumb;
 			let htmlToAppend;
-			if (response.drinks.length % 3 != 0) {
-        htmlToAppend = `
+			if (response.drinks.length < 6) {
+				$(".drinkGallery ul").css("align-content", "space-evenly");
+			}
+			if (response.drinks.length < 3) {
+				$(".drinkGallery ul").css("justify-content", "center");
+			}
+			if (response.drinks.length < 18 && response.drinks.length % 3 != 0) {
+				$(".drinkGallery ul").css({
+					"align-content": "flex-start",
+					"justify-content": "flex-start"
+				});
+
+				htmlToAppend = `
 				<li data-id="${drinkID}" class="drinkGalleryItem appearJS wide" tabindex="0">
 				<h3>${drinkTitle}</h3>
 				<img src="${drinkUrl}" alt="${drinkTitle}" />
 				</li>
 				`;
-      } else {
-			htmlToAppend = `
+			} else {
+				$(".drinkGallery ul").css({
+					"align-content": "flex-start",
+					"justify-content": "flex-start"
+				});
+
+				htmlToAppend = `
 			<li data-id="${drinkID}" class="drinkGalleryItem appearJS" tabindex="0">
 			<h3>${drinkTitle}</h3>
 			<img src="${drinkUrl}" alt="${drinkTitle}" />
@@ -200,7 +216,6 @@ app.populateSpotlight = function() {
 				i: spotlightID
 			}
 		}).then(function(response) {
-      
 			const drinkInstruction = response.drinks[0].strInstructions;
 			const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
@@ -209,19 +224,28 @@ app.populateSpotlight = function() {
 				ingredientType = `strIngredient${i}`;
 				ingredientAmount = `strMeasure${i}`;
 
+				// if there's an ingredient
 				if (response.drinks[0][ingredientType]) {
+					// set string to a variable
+					let ingredientItem = `${response.drinks[0][ingredientType]} ${response.drinks[0][ingredientAmount]}`;
+
+					// if there isn't a measurement amount for an ingredient, prevent it from writing 'null' in the string
+					ingredientItem = ingredientItem.replace("null", "");
+
 					const htmlToAppend = `
 						<li>
-							<p>${response.drinks[0][ingredientType]} ${response.drinks[0][ingredientAmount]}</p>
+							<p>${ingredientItem}</p>
 						</li>
 					`;
 					$(".ingredientList").append(htmlToAppend);
 				}
 			}
 			$(".howToMixIt").html(drinkInstruction);
-			$(".drinkSpotlight .drinkName").html(drinkName);
-			$(".drinkSpotlight .glassType").html(drinkGlass);
-			$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
+			$(".drinkSpotlight .drinkName").text(drinkName);
+			$(".drinkSpotlight .glassType").text(drinkGlass);
+			$(".drinkSpotlight img")
+				.attr("src", `${drinkUrl}`)
+				.attr("alt", drinkName);
 
 			$(".drinkGallery").css("display", "none");
 			$(".drinkSpotlight").css("display", "block");

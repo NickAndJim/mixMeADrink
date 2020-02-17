@@ -35,51 +35,49 @@ header {
 }
 
 h1 {
-    position: sticky;
-    display: block;
-    top: 300px;
-    width: 500px;
-    font-size: 6rem;
-    line-height: 1;
-    margin: 20px 0;
-    font-family: $mainStack;
-    color: $accent;
-    // animation: slideInLeft 2s forwards;
+	position: sticky;
+	display: block;
+	top: 300px;
+	width: 500px;
+	font-size: 6rem;
+	line-height: 1;
+	margin: 20px 0;
+	color: $accent;
+	// animation: slideInLeft 2s forwards;
 }
 
-	h2 {
-        font-family: $mainStack;
-        color: $white;
-		position: relative;
-        text-align: right;
-        font-size: 3rem;
-		opacity: 0.2;
-		margin-top: 100px;
-		right: 0px;
-		animation: slideInRight 40s ease 0.5s forwards;
-	}
+header h2 {
+	color: $white;
+	position: relative;
+	text-align: right;
+	font-size: 3rem;
+	opacity: 0.2;
+	margin-top: 100px;
+	right: 0px;
+	animation: slideInRight 40s ease 0.5s forwards;
+}
 
 @keyframes slideInLeft {
 	0% {
-        margin: 20px 0;
-        top: 300px;
-        position: relative;
+		margin: 20px 0;
+		top: 300px;
+		position: relative;
 		left: -100px;
 		opacity: 0;
 	}
 	99% {
-        top: 300px;
+		top: 300px;
 		left: 0;
-        opacity: 1;
-        position: relative;
-    }
-    100% {
-        margin: 20px 0;
-        top: 320.4px;
-        position: sticky;
-        left: 0px;
 		opacity: 1;
-    }
+		position: relative;
+	}
+	100% {
+		margin: 20px 0;
+		top: 320.4px;
+		position: sticky;
+		left: 0px;
+		opacity: 1;
+	}
 }
 
 @keyframes slideInRight {
@@ -98,22 +96,22 @@ h1 {
 	right: 0;
 	bottom: -400px;
 	height: 350px;
-    width: 350px;
-    opacity: 0;
+	width: 350px;
+	opacity: 0;
 	background: url(../assets/main2.png);
 	background-size: cover;
-    animation: slideUp 3.5s forwards ease;
-    animation-delay: 1s;
+	animation: slideUp 3.5s forwards ease;
+	animation-delay: 1s;
 }
 
 @keyframes slideUp {
 	0% {
 		bottom: -400px;
-    }
-    
-    30% {
-        opacity: 1;
-    }
+	}
+
+	30% {
+		opacity: 1;
+	}
 
 	50% {
 		bottom: 20px;
@@ -132,8 +130,8 @@ h1 {
 	}
 
 	100% {
-        bottom: 0;
-        opacity: 1;
+		bottom: 0;
+		opacity: 1;
 	}
 }
 

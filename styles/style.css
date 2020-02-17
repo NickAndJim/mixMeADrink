@@ -249,6 +249,7 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
+  font-family: "Poiret One", cursive;
 }
 
 img {
@@ -334,12 +335,10 @@ h1 {
   font-size: 6rem;
   line-height: 1;
   margin: 20px 0;
-  font-family: "Poiret One", cursive;
   color: #8ce8fb;
 }
 
-h2 {
-  font-family: "Poiret One", cursive;
+header h2 {
   color: #F6F6F6;
   position: relative;
   text-align: right;
@@ -548,7 +547,7 @@ h2 {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -638,6 +637,8 @@ h2 {
   grid-area: gallery;
   position: relative;
   display: block;
+  height: 600px;
+  padding: 10px;
 }
 
 .drinkGallery:before {
@@ -651,11 +652,6 @@ h2 {
   width: 100%;
   opacity: 0.2;
   z-index: 0;
-}
-
-.footer {
-  grid-area: footer;
-  background: #F9DEC9;
 }
 
 .drinkGallery ul {
@@ -674,31 +670,18 @@ h2 {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 10px;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  height: calc(100% - 10px);
+  overflow-y: scroll;
 }
 
 .drinkGallery li {
   position: relative;
   opacity: 0;
-  width: calc(33% - 10px);
-  margin: 5px;
+  width: calc(33% - 20px);
+  margin: 10px;
   height: 190px;
-}
-
-.drinkGallery li:first-of-type img {
-  border-radius: 20px 0 0 0;
-}
-
-.drinkGallery li:nth-of-type(3) img {
-  border-radius: 0 20px 0 0;
-}
-
-.drinkGallery li:last-of-type img {
-  border-radius: 0 0 20px 0;
-}
-
-.drinkGallery li:nth-last-of-type(3) img {
-  border-radius: 0 0 0 20px;
 }
 
 .drinkGallery li img {
@@ -709,24 +692,28 @@ h2 {
   -webkit-filter: brightness(100%);
           filter: brightness(100%);
   border: 2px solid #8ce8fb;
+  border-radius: 5px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
 
-.drinkGallery li:hover,
-.drinkGallery li:focus {
+.drinkGallery li:hover, .drinkGallery li:focus {
   cursor: pointer;
 }
 
-.drinkGallery li:hover img,
-.drinkGallery li:focus img {
+.drinkGallery li:hover img, .drinkGallery li:focus img {
   -webkit-filter: brightness(50%);
           filter: brightness(50%);
 }
 
-.drinkGallery li:hover h3,
-.drinkGallery li:focus h3 {
+.drinkGallery li:hover h3, .drinkGallery li:focus h3 {
   text-shadow: 1px 1px 2px black;
+}
+
+.drinkGallery .wide {
+  width: calc(50% - 10px);
+  margin: 5px;
+  height: 250px;
 }
 
 h3 {
@@ -744,9 +731,14 @@ h3 {
   z-index: 2;
 }
 
+.footer {
+  grid-area: footer;
+  background: #F9DEC9;
+}
+
 .drinkSpotlight {
-  color: black;
   display: none;
+  color: black;
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   -ms-grid-column: 2;
@@ -755,8 +747,8 @@ h3 {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #F9DEC9;
   border-radius: 10px;
+  padding: 20px;
 }
 
 .drinkSpotlight:before {
@@ -772,6 +764,50 @@ h3 {
   z-index: 0;
 }
 
+.drinkSpotlight .imgContainer {
+  float: left;
+  width: 40%;
+}
+
+.drinkSpotlight .imgContainer img {
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 5px 2px #3A405A;
+          box-shadow: 0 0 5px 2px #3A405A;
+}
+
+.drinkSpotlight h2 {
+  position: relative;
+  color: #8ce8fb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2rem;
+  width: 50%;
+  float: right;
+}
+
+.drinkSpotlight h3 {
+  text-align: left;
+  margin-top: 20px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.drinkSpotlight .drinkInfo {
+  position: relative;
+  float: right;
+  width: 50%;
+  color: #F6F6F6;
+}
+
 .drinkSpotlight .ingredientList li {
   opacity: 1;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.drinkSpotlight p {
+  line-height: 1.2;
+  margin: 0;
+  font-size: 1.6rem;
 }

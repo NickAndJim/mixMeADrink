@@ -72,6 +72,8 @@
 	grid-area: gallery;
 	position: relative;
 	display: block;
+	height: 600px;
+	padding: 10px;
 
 	&:before {
 		content: " ";
@@ -85,40 +87,36 @@
 		opacity: 0.2;
 		z-index: 0;
 	}
-}
-.footer {
-	grid-area: footer;
 
-	background: $secondary;
-}
-
-.drinkGallery {
 	ul {
 		@include flexRow(flex-start);
 		flex-wrap: wrap;
-		padding: 10px;
+		align-content: flex-start;
+		height: calc(100% - 10px);
+		overflow-y: scroll;
 	}
+
 	li {
 		position: relative;
 		opacity: 0;
-		width: calc(33% - 10px);
-		margin: 5px;
+		width: calc(33% - 20px);
+		margin: 10px;
 		height: 190px;
 
-		&:first-of-type img {
-			border-radius: 20px 0 0 0;
-		}
-		&:nth-of-type(3) img {
-			border-radius: 0 20px 0 0;
-		}
+		// &:first-of-type img {
+		// 	border-radius: 20px 0 0 0;
+		// }
+		// &:nth-of-type(3) img {
+		// 	border-radius: 0 20px 0 0;
+		// }
 
-		// add class name to li for the bottom ones and then apply it after they've been populated
-		&:last-of-type img {
-			border-radius: 0 0 20px 0;
-		}
-		&:nth-last-of-type(3) img {
-			border-radius: 0 0 0 20px;
-		}
+		// // add class name to li for the bottom ones and then apply it after they've been populated
+		// &:last-of-type img {
+		// 	border-radius: 0 0 20px 0;
+		// }
+		// &:nth-last-of-type(3) img {
+		// 	border-radius: 0 0 0 20px;
+		// }
 
 		img {
 			width: 100%;
@@ -126,19 +124,24 @@
 			object-fit: cover;
 			filter: brightness(100%);
 			border: 2px solid $accent;
+			border-radius: 5px;
 			transition: 0.2s all;
 		}
+		&:hover,
+		&:focus {
+			cursor: pointer;
+			img {
+				filter: brightness(50%);
+			}
+			h3 {
+				text-shadow: 1px 1px 2px black;
+			}
+		}
 	}
-
-	li:hover,
-	li:focus {
-		cursor: pointer;
-		img {
-			filter: brightness(50%);
-		}
-		h3 {
-			text-shadow: 1px 1px 2px black;
-		}
+	.wide {
+		width: calc(50% - 10px);
+		margin: 5px;
+		height: 250px;
 	}
 }
 
@@ -153,4 +156,10 @@ h3 {
 	transform: translate(-50%, -50%);
 	text-decoration: 1px solid $accent underline;
 	z-index: 2;
+}
+
+.footer {
+	grid-area: footer;
+
+	background: $secondary;
 }
