@@ -1,149 +1,3 @@
-.headerWrapper {
-	max-width: 1080px;
-	width: 80vw;
-	margin: 0 auto;
-	position: relative;
-	height: 120vh;
-}
-header {
-	top: 0;
-	background-image: url(../assets/mainFinal.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	height: 120vh;
-	width: 80%;
-	margin: 0 auto;
-	position: relative;
-	opacity: 0;
-	animation: appear 2s linear forwards;
-	overflow-y: hidden;
-}
-
-.appearJS {
-	animation: appear 0.5s ease forwards;
-}
-
-@keyframes appear {
-	0%,
-	10% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-.titleContainer {
-	position: relative;
-	border-radius: 10px;
-	padding: 20px;
-	margin: 20px auto;
-	width: 80%;
-	top: 200px;
-	font-family: $mainStack;
-	color: $accent;
-
-	h1 {
-		position: relative;
-		font-size: calc(6rem + 20%);
-		margin: 20px 0;
-		animation: slideInLeft 2s forwards;
-	}
-	h2 {
-		position: relative;
-		text-align: right;
-		opacity: 0;
-		margin: 20px;
-		right: -100px;
-		animation: slideInRight 2s ease 0.5s forwards;
-	}
-}
-
-@keyframes slideInLeft {
-	0% {
-		left: -100px;
-		opacity: 0;
-	}
-	100% {
-		left: 0;
-		opacity: 1;
-	}
-}
-
-@keyframes slideInRight {
-	0% {
-		right: -100px;
-		opacity: 0;
-	}
-	100% {
-		right: 0;
-		opacity: 0.8;
-	}
-}
-
-.decoration {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	height: 350px;
-	width: 350px;
-	background: url(../assets/main2.png);
-	background-size: cover;
-	animation: slideUp 4s forwards ease;
-}
-
-@keyframes slideUp {
-	0% {
-		bottom: -800px;
-	}
-
-	50% {
-		bottom: 20px;
-	}
-
-	65% {
-		bottom: -15px;
-	}
-
-	75% {
-		bottom: 7px;
-	}
-
-	90% {
-		bottom: -5px;
-	}
-
-	100% {
-		bottom: 0;
-	}
-}
-
-.decoration2 {
-	@include flexCol;
-	position: relative;
-	color: $accent;
-	font-size: 4rem;
-	margin: 60vh auto 0;
-
-	span {
-		line-height: 0.5;
-		margin: 0;
-		opacity: 0;
-		animation: appear 1.5s alternate ease-in-out infinite;
-	}
-
-	.dot1 {
-		animation-delay: 2s;
-	}
-	.dot2 {
-		animation-delay: 2.5s;
-	}
-	.dot3 {
-		animation-delay: 3s;
-	}
-}
-
 .landingPage {
 	height: 80vh;
 	display: grid;
@@ -157,32 +11,59 @@ header {
 
 .drinkFilters {
 	grid-area: form;
+	position: relative;
 	background: url(../assets/backsplash.jpg), black;
-	// box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
-	background-size: cover;
+	box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+	background-size: contain;
+	background-position-y: 100px;
+	background-repeat: no-repeat;
 	@include flexCol(space-between);
+	height: 600px;
+	margin-bottom: 20px;
+	padding: 10px;
+	border-radius: 10px;
+
+	&:before {
+		content: " ";
+		position: absolute;
+		background: $white;
+		border-radius: 10px;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		opacity: 0.1;
+		z-index: 0;
+	}
+
 	form {
 		width: 100%;
-		padding: 10px;
+		padding: 5px;
 		font-size: 2rem;
+		z-index: 1;
 	}
-}
+	button,
+	input {
+		padding: 5px;
+		margin: 2.5px;
+		width: 100%;
+		border-radius: 5px;
+	}
+	label,
+	h2 {
+		color: $accent;
+	}
+	button {
+		background: $accent;
+		&:hover {
+			cursor: pointer;
+		}
+	}
 
-button,
-input {
-	padding: 10px;
-	width: 100%;
-}
-label,
-h2 {
-	color: $accent;
-}
-button {
-	background: $secondary;
-}
-
-input {
-	opacity: 0.5;
+	input {
+		border: 2px solid $secondary;
+		background: $white;
+	}
 }
 
 .drinkGallery {
@@ -194,13 +75,47 @@ input {
 	background: $secondary;
 }
 
-.drinkGallery ul {
-	@include flexRow(flex-start);
-	flex-wrap: wrap;
-	padding: 10px;
+.drinkGallery {
+	ul {
+		@include flexRow(flex-start);
+		flex-wrap: wrap;
+		padding: 10px;
+	}
+	li {
+		position: relative;
+		opacity: 0;
+		width: calc(33% - 10px);
+		margin: 5px;
+		height: 190px;
+
+		&:first-of-type img {
+			border-radius: 20px 0 0 0;
+		}
+		&:nth-of-type(3) img {
+			border-radius: 0 20px 0 0;
+		}
+
+		// add class name to li for the bottom ones and then apply it after they've been populated
+		&:last-of-type img {
+			border-radius: 0 0 20px 0;
+		}
+		&:nth-last-of-type(3) img {
+			border-radius: 0 0 0 20px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			filter: brightness(100%);
+			border: 2px solid $accent;
+			transition: 0.2s all;
+		}
+	}
 
 	li:hover,
 	li:focus {
+		cursor: pointer;
 		img {
 			filter: brightness(50%);
 		}
@@ -211,7 +126,7 @@ input {
 }
 
 h3 {
-
+	text-shadow: 1px 1px 2px black;
 	color: $white;
 	font-size: 2rem;
 	text-align: center;
@@ -219,35 +134,6 @@ h3 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	text-decoration: 1px solid $accent underline;
 	z-index: 2;
-}
-
-li {
-	position: relative;
-	opacity: 0;
-	width: calc(33% - 10px);
-	margin: 5px;
-
-	&:first-of-type img {
-		border-radius: 20px 0 0 0;
-	}
-	&:nth-of-type(3) img {
-		border-radius: 0 20px 0 0;
-	}
-
-	// add class name to li for the bottom ones and then apply it after they've been populated
-	&:last-of-type img {
-		border-radius: 0 0 20px 0;
-	}
-	&:nth-last-of-type(3) img {
-		border-radius: 0 0 0 20px;
-	}
-
-	img {
-		filter: brightness(100%);
-		width: 100%;
-		height: auto;
-		transition: 0.2s all;
-		border:2px solid $accent;
-	}
 }

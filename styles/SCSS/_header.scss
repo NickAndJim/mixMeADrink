@@ -1,0 +1,163 @@
+.headerWrapper {
+	max-width: 1080px;
+	width: 80vw;
+	margin: 0 auto;
+	position: relative;
+	height: 120vh;
+}
+header {
+	top: 0;
+	background-image: url(../assets/mainFinal.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 120vh;
+	width: 80%;
+	margin: 0 auto;
+	position: relative;
+	opacity: 0;
+	animation: appear 2s linear forwards;
+	// overflow-y: hidden;
+}
+
+.appearJS {
+	animation: appear 0.5s ease forwards;
+}
+
+@keyframes appear {
+	0%,
+	10% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+h1 {
+    position: sticky;
+    display: block;
+    top: 300px;
+    width: 500px;
+    font-size: 6rem;
+    line-height: 1;
+    margin: 20px 0;
+    font-family: $mainStack;
+    color: $accent;
+    // animation: slideInLeft 2s forwards;
+}
+
+	h2 {
+        font-family: $mainStack;
+        color: $white;
+		position: relative;
+        text-align: right;
+        font-size: 3rem;
+		opacity: 0.2;
+		margin-top: 100px;
+		right: 0px;
+		animation: slideInRight 40s ease 0.5s forwards;
+	}
+
+@keyframes slideInLeft {
+	0% {
+        margin: 20px 0;
+        top: 300px;
+        position: relative;
+		left: -100px;
+		opacity: 0;
+	}
+	99% {
+        top: 300px;
+		left: 0;
+        opacity: 1;
+        position: relative;
+    }
+    100% {
+        margin: 20px 0;
+        top: 320.4px;
+        position: sticky;
+        left: 0px;
+		opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+	0% {
+		right: 0px;
+		opacity: 0.2;
+	}
+	100% {
+		right: 10%;
+		opacity: 0.4;
+	}
+}
+
+.decoration {
+	position: absolute;
+	right: 0;
+	bottom: -400px;
+	height: 350px;
+    width: 350px;
+    opacity: 0;
+	background: url(../assets/main2.png);
+	background-size: cover;
+    animation: slideUp 3.5s forwards ease;
+    animation-delay: 1s;
+}
+
+@keyframes slideUp {
+	0% {
+		bottom: -400px;
+    }
+    
+    30% {
+        opacity: 1;
+    }
+
+	50% {
+		bottom: 20px;
+	}
+
+	65% {
+		bottom: -15px;
+	}
+
+	75% {
+		bottom: 7px;
+	}
+
+	90% {
+		bottom: -5px;
+	}
+
+	100% {
+        bottom: 0;
+        opacity: 1;
+	}
+}
+
+.decoration2 {
+	@include flexCol;
+	position: relative;
+	color: $accent;
+	font-size: 4rem;
+	margin: 60vh auto 0;
+
+	span {
+		line-height: 0.5;
+		margin: 0;
+		opacity: 0;
+		animation: appear 1.5s alternate ease-in-out infinite;
+	}
+
+	.dot1 {
+		animation-delay: 2s;
+	}
+	.dot2 {
+		animation-delay: 2.5s;
+	}
+	.dot3 {
+		animation-delay: 3s;
+	}
+}

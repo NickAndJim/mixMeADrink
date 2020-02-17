@@ -277,14 +277,6 @@ ol {
   margin: 0 auto;
 }
 
-.landingPage {
-  display: block;
-}
-
-.drinkSpotlight {
-  background: #F9DEC9;
-}
-
 .headerWrapper {
   max-width: 1080px;
   width: 80vw;
@@ -306,7 +298,6 @@ header {
   opacity: 0;
   -webkit-animation: appear 2s linear forwards;
           animation: appear 2s linear forwards;
-  overflow-y: hidden;
 }
 
 .appearJS {
@@ -334,94 +325,123 @@ header {
   }
 }
 
-.titleContainer {
-  position: relative;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px auto;
-  width: 80%;
-  top: 200px;
+h1 {
+  position: -webkit-sticky;
+  position: sticky;
+  display: block;
+  top: 300px;
+  width: 500px;
+  font-size: 6rem;
+  line-height: 1;
+  margin: 20px 0;
   font-family: "Poiret One", cursive;
   color: #8ce8fb;
 }
 
-.titleContainer h1 {
-  position: relative;
-  font-size: calc(6rem + 20%);
-  margin: 20px 0;
-  -webkit-animation: slideInLeft 2s forwards;
-          animation: slideInLeft 2s forwards;
-}
-
-.titleContainer h2 {
+h2 {
+  font-family: "Poiret One", cursive;
+  color: #F6F6F6;
   position: relative;
   text-align: right;
-  opacity: 0;
-  margin: 20px;
-  right: -100px;
-  -webkit-animation: slideInRight 2s ease 0.5s forwards;
-          animation: slideInRight 2s ease 0.5s forwards;
+  font-size: 3rem;
+  opacity: 0.2;
+  margin-top: 100px;
+  right: 0px;
+  -webkit-animation: slideInRight 40s ease 0.5s forwards;
+          animation: slideInRight 40s ease 0.5s forwards;
 }
 
 @-webkit-keyframes slideInLeft {
   0% {
+    margin: 20px 0;
+    top: 300px;
+    position: relative;
     left: -100px;
     opacity: 0;
   }
-  100% {
+  99% {
+    top: 300px;
     left: 0;
+    opacity: 1;
+    position: relative;
+  }
+  100% {
+    margin: 20px 0;
+    top: 320.4px;
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0px;
     opacity: 1;
   }
 }
 
 @keyframes slideInLeft {
   0% {
+    margin: 20px 0;
+    top: 300px;
+    position: relative;
     left: -100px;
     opacity: 0;
   }
-  100% {
+  99% {
+    top: 300px;
     left: 0;
+    opacity: 1;
+    position: relative;
+  }
+  100% {
+    margin: 20px 0;
+    top: 320.4px;
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0px;
     opacity: 1;
   }
 }
 
 @-webkit-keyframes slideInRight {
   0% {
-    right: -100px;
-    opacity: 0;
+    right: 0px;
+    opacity: 0.2;
   }
   100% {
-    right: 0;
-    opacity: 0.8;
+    right: 10%;
+    opacity: 0.4;
   }
 }
 
 @keyframes slideInRight {
   0% {
-    right: -100px;
-    opacity: 0;
+    right: 0px;
+    opacity: 0.2;
   }
   100% {
-    right: 0;
-    opacity: 0.8;
+    right: 10%;
+    opacity: 0.4;
   }
 }
 
 .decoration {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -400px;
   height: 350px;
   width: 350px;
+  opacity: 0;
   background: url(../assets/main2.png);
   background-size: cover;
-  -webkit-animation: slideUp 4s forwards ease;
-          animation: slideUp 4s forwards ease;
+  -webkit-animation: slideUp 3.5s forwards ease;
+          animation: slideUp 3.5s forwards ease;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 @-webkit-keyframes slideUp {
   0% {
-    bottom: -800px;
+    bottom: -400px;
+  }
+  30% {
+    opacity: 1;
   }
   50% {
     bottom: 20px;
@@ -437,12 +457,16 @@ header {
   }
   100% {
     bottom: 0;
+    opacity: 1;
   }
 }
 
 @keyframes slideUp {
   0% {
-    bottom: -800px;
+    bottom: -400px;
+  }
+  30% {
+    opacity: 1;
   }
   50% {
     bottom: 20px;
@@ -458,6 +482,7 @@ header {
   }
   100% {
     bottom: 0;
+    opacity: 1;
   }
 }
 
@@ -512,7 +537,7 @@ header {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -521,8 +546,13 @@ header {
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: form;
+  position: relative;
   background: url(../assets/backsplash.jpg), black;
-  background-size: cover;
+  -webkit-box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+          box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+  background-size: contain;
+  background-position-y: 100px;
+  background-repeat: no-repeat;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -536,31 +566,56 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 600px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.drinkFilters:before {
+  content: " ";
+  position: absolute;
+  background: #F6F6F6;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.1;
+  z-index: 0;
 }
 
 .drinkFilters form {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   font-size: 2rem;
+  z-index: 1;
 }
 
-button,
-input {
-  padding: 10px;
+.drinkFilters button,
+.drinkFilters input {
+  padding: 5px;
+  margin: 2.5px;
   width: 100%;
+  border-radius: 5px;
 }
 
-label,
-h2 {
+.drinkFilters label,
+.drinkFilters h2 {
   color: #8ce8fb;
 }
 
-button {
-  background: #F9DEC9;
+.drinkFilters button {
+  background: #8ce8fb;
 }
 
-input {
-  opacity: 0.5;
+.drinkFilters button:hover {
+  cursor: pointer;
+}
+
+.drinkFilters input {
+  border: 2px solid #F9DEC9;
+  background: #F6F6F6;
 }
 
 .drinkGallery {
@@ -595,18 +650,60 @@ input {
   padding: 10px;
 }
 
-.drinkGallery ul li:hover img,
-.drinkGallery ul li:focus img {
+.drinkGallery li {
+  position: relative;
+  opacity: 0;
+  width: calc(33% - 10px);
+  margin: 5px;
+  height: 190px;
+}
+
+.drinkGallery li:first-of-type img {
+  border-radius: 20px 0 0 0;
+}
+
+.drinkGallery li:nth-of-type(3) img {
+  border-radius: 0 20px 0 0;
+}
+
+.drinkGallery li:last-of-type img {
+  border-radius: 0 0 20px 0;
+}
+
+.drinkGallery li:nth-last-of-type(3) img {
+  border-radius: 0 0 0 20px;
+}
+
+.drinkGallery li img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+  border: 2px solid #8ce8fb;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.drinkGallery li:hover,
+.drinkGallery li:focus {
+  cursor: pointer;
+}
+
+.drinkGallery li:hover img,
+.drinkGallery li:focus img {
   -webkit-filter: brightness(50%);
           filter: brightness(50%);
 }
 
-.drinkGallery ul li:hover h3,
-.drinkGallery ul li:focus h3 {
+.drinkGallery li:hover h3,
+.drinkGallery li:focus h3 {
   text-shadow: 1px 1px 2px black;
 }
 
 h3 {
+  text-shadow: 1px 1px 2px black;
   color: #F6F6F6;
   font-size: 2rem;
   text-align: center;
@@ -615,44 +712,14 @@ h3 {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  -webkit-text-decoration: 1px solid #8ce8fb underline;
+          text-decoration: 1px solid #8ce8fb underline;
   z-index: 2;
-}
-
-li {
-  position: relative;
-  opacity: 0;
-  width: calc(33% - 10px);
-  margin: 5px;
-}
-
-li:first-of-type img {
-  border-radius: 20px 0 0 0;
-}
-
-li:nth-of-type(3) img {
-  border-radius: 0 20px 0 0;
-}
-
-li:last-of-type img {
-  border-radius: 0 0 20px 0;
-}
-
-li:nth-last-of-type(3) img {
-  border-radius: 0 0 0 20px;
-}
-
-li img {
-  -webkit-filter: brightness(100%);
-          filter: brightness(100%);
-  width: 100%;
-  height: auto;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-  border: 2px solid #8ce8fb;
 }
 
 .drinkSpotlight {
   color: black;
+  display: none;
 }
 
 .drinkSpotlight .ingredientList li {
