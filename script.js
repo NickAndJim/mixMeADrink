@@ -120,7 +120,7 @@ app.getDrinksByRandom = function() {
       method: "GET",
       dataType: "json",
     }).then(function(response) {
-      console.log(response.drinks[0].strInstructions);
+      $(".ingredientList").empty();
       const drinkInstruction = response.drinks[0].strInstructions;
       const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
@@ -175,6 +175,7 @@ app.populateGallery = function(response) {
 //This function will bring the user away from the user input section and be presented with a drink construction information page on the drink of their choice with the data obtained from an ajax call
 app.populateSpotlight = function() {
 	$(".drinkGallery ul").on("click", "li", function() {
+		$(".ingredientList").empty();
 		const spotlightID = $(this).data("id");
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
