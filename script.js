@@ -6,6 +6,7 @@ app.init = function() {
 	app.getDrinksByAlcohol();
 	app.getDrinksByIngredient();
 	app.populateSpotlight();
+	app.getDrinksByRandom();
 };
 
 $(function() {
