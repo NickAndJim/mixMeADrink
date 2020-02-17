@@ -12,6 +12,7 @@ $(function() {
 	app.init();
 });
 
+//Function for scrolling the page to the appropriate section when the user clicks anywhere on the header.
 app.smoothScrollFromHeader = function() {
 	$("header").on("click", function() {
 		$("html,body").animate(
@@ -22,7 +23,7 @@ app.smoothScrollFromHeader = function() {
 		);
 	});
 };
-
+//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userinput
 app.getDrinksByName = function() {
 	$("form.drinksByNameForm").on("submit", function(e) {
 		e.preventDefault();
@@ -41,7 +42,7 @@ app.getDrinksByName = function() {
 		});
 	});
 };
-
+//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userinput
 app.getDrinksByAlcohol = function() {
 	$("form.drinksByAlcoholForm").on("submit", function(e) {
 		e.preventDefault();
@@ -60,7 +61,7 @@ app.getDrinksByAlcohol = function() {
 		});
 	});
 };
-
+//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userinput. If the user gives 2 inputs, the selection given will only be drinks that contain both ingredients.
 app.getDrinksByIngredient = function() {
 	$("form.drinksByIngredientForm").on("submit", function(e) {
 		e.preventDefault();
@@ -111,7 +112,37 @@ app.getDrinksByIngredient = function() {
 		}
 	});
 };
+//This function will bring the user away from the user input section and be presented with a drink construction information page on a random drink with the data obtained from an ajax call
+app.getDrinksByRandom = function() {
+	$(".feelingLuckyForm").on("click", function() {
+		$.ajax({
+      url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+      method: "GET",
+      dataType: "json",
+    }).then(function(response) {
+      console.log(response.drinks[0].strInstructions);
+      const drinkInstruction = response.drinks[0].strInstructions;
+      const drinkName = response.drinks[0].strDrink;
+			const drinkGlass = response.drinks[0].strGlass;
+			const drinkUrl = response.drinks[0].strDrinkThumb;
+      for (i = 0; i <= 15; i++) {
+        ingredientType = `strIngredient${i}`;
+        ingredientAmount = `strMeasure${i}`;
 
+        if (response.drinks[0][ingredientType]) {
+          const coolWhip = `
+						<li>
+							<p>${response.drinks[0][ingredientType]} ${response.drinks[0][ingredientAmount]}</p>
+						</li>
+					`;
+          $(".ingredientList").append(coolWhip);
+        }
+      }
+      $(".howToMixIt").text(response.drinks[0].strInstructions);
+    });
+	})
+}
+//This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	$(".drinkGallery ul").empty();
 	if (response) {
@@ -138,9 +169,9 @@ app.populateGallery = function(response) {
 		});
 	}
 };
-
+//This function will bring the user away from the user input section and be presented with a drink construction information page on the drink of their choice with the data obtained from an ajax call
 app.populateSpotlight = function() {
-	$("ul").on("click", "li", function() {
+	$(".drinkGallery ul").on("click", "li", function() {
 		const spotlightID = $(this).data("id");
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
@@ -154,6 +185,7 @@ app.populateSpotlight = function() {
 			const drinkInstruction = response.drinks[0].strInstructions;
 			const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
+			const drinkUrl = response.drinks[0].strDrinkThumb;
 			for (i = 0; i <= 15; i++) {
 				ingredientType = `strIngredient${i}`;
 				ingredientAmount = `strMeasure${i}`;
