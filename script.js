@@ -125,6 +125,7 @@ app.getDrinksByRandom = function() {
       const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
 			const drinkUrl = response.drinks[0].strDrinkThumb;
+			
       for (i = 0; i <= 15; i++) {
         ingredientType = `strIngredient${i}`;
         ingredientAmount = `strMeasure${i}`;
@@ -141,7 +142,7 @@ app.getDrinksByRandom = function() {
       $(".howToMixIt").html(drinkInstruction);
       $(".drinkSpotlight .drinkName").html(drinkName);
       $(".drinkSpotlight .glassType").html(drinkGlass);
-			$(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
+			$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
 			$(".drinkGallery").css("display", "none");
       $(".drinkSpotlight").css("display", "block");
     });
@@ -150,10 +151,13 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	$(".drinkGallery ul").empty();
+	if ((response.drinks.length%3) != 0 ) {
+		$(".drinkGallery li").css("width", `calc(50% - 20px)`);
+	}
 	if (response) {
 		let i = 0;
-		let countDown = 9;
-		modArray = response.drinks.slice(0, 9);
+		let countDown = 18;
+		modArray = response.drinks.slice(0, 18);
 		modArray.forEach(function(item) {
 			i++;
 			const drinkTitle = item.strDrink;
@@ -209,7 +213,7 @@ app.populateSpotlight = function() {
 			$(".howToMixIt").html(drinkInstruction);
 			$(".drinkSpotlight .drinkName").html(drinkName);
 			$(".drinkSpotlight .glassType").html(drinkGlass);
-			$(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
+			$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
 
 			$(".drinkGallery").css("display", "none");
 			$(".drinkSpotlight").css("display", "block");
