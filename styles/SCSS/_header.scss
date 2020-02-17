@@ -142,13 +142,22 @@ h1 {
 	position: relative;
 	color: $accent;
 	font-size: 4rem;
-	margin: 60vh auto 0;
+	margin: 50vh auto 0;
 
 	span {
 		line-height: 0.5;
 		margin: 0;
 		opacity: 0;
 		animation: appear 1.5s alternate ease-in-out infinite;
+	}
+
+	p.scroll {
+		transform: rotate(-90deg);
+		font-size: 1.5rem;
+		font-family: $mainStack;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		animation: appear 4s forwards;
 	}
 
 	.dot1 {

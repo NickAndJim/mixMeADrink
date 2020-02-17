@@ -503,7 +503,7 @@ h2 {
   position: relative;
   color: #8ce8fb;
   font-size: 4rem;
-  margin: 60vh auto 0;
+  margin: 50vh auto 0;
 }
 
 .decoration2 span {
@@ -512,6 +512,17 @@ h2 {
   opacity: 0;
   -webkit-animation: appear 1.5s alternate ease-in-out infinite;
           animation: appear 1.5s alternate ease-in-out infinite;
+}
+
+.decoration2 p.scroll {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  font-size: 1.5rem;
+  font-family: "Poiret One", cursive;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-animation: appear 4s forwards;
+          animation: appear 4s forwards;
 }
 
 .decoration2 .dot1 {
