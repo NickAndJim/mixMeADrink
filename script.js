@@ -141,7 +141,9 @@ app.getDrinksByRandom = function() {
       $(".howToMixIt").html(drinkInstruction);
       $(".drinkSpotlight .drinkName").html(drinkName);
       $(".drinkSpotlight .glassType").html(drinkGlass);
-      $(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
+			$(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
+			$(".drinkGallery").css("display", "none");
+      $(".drinkSpotlight").css("display", "block");
     });
 	})
 }
@@ -176,6 +178,7 @@ app.populateGallery = function(response) {
 app.populateSpotlight = function() {
 	$(".drinkGallery ul").on("click", "li", function() {
 		$(".ingredientList").empty();
+
 		const spotlightID = $(this).data("id");
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
@@ -207,6 +210,9 @@ app.populateSpotlight = function() {
 			$(".drinkSpotlight .drinkName").html(drinkName);
 			$(".drinkSpotlight .glassType").html(drinkGlass);
 			$(".drinkSpotlight .drinkMain img").attr("src", `${drinkUrl}`);
+
+			$(".drinkGallery").css("display", "none");
+			$(".drinkSpotlight").css("display", "block");
 		});
 	});
 };
