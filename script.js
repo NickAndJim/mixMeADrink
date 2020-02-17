@@ -151,9 +151,7 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	$(".drinkGallery ul").empty();
-	if ((response.drinks.length%3) != 0 ) {
-		$(".drinkGallery li").css("width", `calc(50% - 20px)`);
-	}
+	
 	if (response) {
 		let i = 0;
 		let countDown = 18;
@@ -163,12 +161,22 @@ app.populateGallery = function(response) {
 			const drinkTitle = item.strDrink;
 			const drinkID = item.idDrink;
 			const drinkUrl = item.strDrinkThumb;
-			const htmlToAppend = `
+			let htmlToAppend;
+			if (response.drinks.length % 3 != 0) {
+        htmlToAppend = `
+				<li data-id="${drinkID}" class="drinkGalleryItem appearJS wide" tabindex="0">
+				<h3>${drinkTitle}</h3>
+				<img src="${drinkUrl}" alt="${drinkTitle}" />
+				</li>
+				`;
+      } else {
+			htmlToAppend = `
 			<li data-id="${drinkID}" class="drinkGalleryItem appearJS" tabindex="0">
 			<h3>${drinkTitle}</h3>
 			<img src="${drinkUrl}" alt="${drinkTitle}" />
 			</li>
 			`;
+			}
 
 			const appending = setTimeout(function() {
 				$(".drinkGallery ul").append(htmlToAppend);
