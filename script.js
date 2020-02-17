@@ -114,7 +114,8 @@ app.getDrinksByIngredient = function() {
 };
 //This function will bring the user away from the user input section and be presented with a drink construction information page on a random drink with the data obtained from an ajax call
 app.getDrinksByRandom = function() {
-	$(".feelingLuckyForm").on("submit", function() {
+	$(".feelingLuckyForm").on("submit", function(event) {
+		event.preventDefault();
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
 			method: "GET",
