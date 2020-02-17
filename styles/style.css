@@ -548,7 +548,7 @@ h2 {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -592,7 +592,7 @@ h2 {
   left: 0;
   height: 100%;
   width: 100%;
-  opacity: 0.1;
+  opacity: 0.2;
   z-index: 0;
 }
 
@@ -636,6 +636,21 @@ h2 {
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: gallery;
+  position: relative;
+  display: block;
+}
+
+.drinkGallery:before {
+  content: " ";
+  position: absolute;
+  background: #F6F6F6;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+  z-index: 0;
 }
 
 .footer {
@@ -732,6 +747,29 @@ h3 {
 .drinkSpotlight {
   color: black;
   display: none;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: gallery;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #F9DEC9;
+  border-radius: 10px;
+}
+
+.drinkSpotlight:before {
+  content: " ";
+  position: absolute;
+  background: #F6F6F6;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+  z-index: 0;
 }
 
 .drinkSpotlight .ingredientList li {

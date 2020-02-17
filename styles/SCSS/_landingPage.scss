@@ -32,7 +32,7 @@
 		left: 0;
 		height: 100%;
 		width: 100%;
-		opacity: 0.1;
+		opacity: 0.2;
 		z-index: 0;
 	}
 
@@ -70,6 +70,21 @@
 // should we make this gallery scrollable if more than 9 results?
 .drinkGallery {
 	grid-area: gallery;
+	position: relative;
+	display: block;
+
+	&:before {
+		content: " ";
+		position: absolute;
+		background: $white;
+		border-radius: 10px;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		opacity: 0.2;
+		z-index: 0;
+	}
 }
 .footer {
 	grid-area: footer;
