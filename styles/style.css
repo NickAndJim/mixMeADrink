@@ -563,7 +563,7 @@ main {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -898,11 +898,21 @@ footer p {
 }
 
 .relatedDrinks ul li {
+  position: relative;
+  z-index: 2;
   width: 20%;
 }
 
 .relatedDrinks ul li img {
   width: 100%;
+  height: auto;
+}
+
+.relatedDrinks ul li h3 {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
 }
 
 .forMobile {

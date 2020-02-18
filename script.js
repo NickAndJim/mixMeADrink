@@ -6,7 +6,7 @@ app.init = function() {
 	app.getDrinksByAlcohol();
 	app.getDrinksByIngredient();
 	app.populateSpotlight();
-	
+
 	// separated these so it runs once on load
 	app.getDrinksByRandom();
 	app.getDrinksByRandomListenerEvent();
@@ -135,7 +135,7 @@ app.getDrinksByRandom = function() {
 		const drinkName = response.drinks[0].strDrink;
 		const drinkGlass = response.drinks[0].strGlass;
 		const drinkUrl = response.drinks[0].strDrinkThumb;
-		const {strIngredient1, strIngredient2, idDrink} = response.drinks[0];
+		const { strIngredient1, strIngredient2, idDrink } = response.drinks[0];
 		for (i = 0; i <= 15; i++) {
 			ingredientType = `strIngredient${i}`;
 			ingredientAmount = `strMeasure${i}`;
@@ -161,7 +161,7 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	app.switchToGallery();
-	
+
 	if (response) {
 		let i = 0;
 		let countDown = 18;
@@ -227,11 +227,9 @@ app.switchToGallery = function() {
 
 //This function will bring the user away from the user input section and be presented with a drink construction information page on the drink of their choice with the data obtained from an ajax call
 app.populateSpotlight = function() {
-	$(".drinkGallery ul").on("click", "li", function() {
-		
+	$(".drinkGallery ul, .relatedDrinks ul	").on("click", "li", function() {
 		$(".ingredientList").empty();
 		app.switchToSpotlight();
-
 		const spotlightID = $(this).data("id");
 		$.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
@@ -245,7 +243,7 @@ app.populateSpotlight = function() {
 			const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
 			const drinkUrl = response.drinks[0].strDrinkThumb;
-			const {strIngredient1, strIngredient2} = response.drinks[0];
+			const { strIngredient1, strIngredient2 } = response.drinks[0];
 			for (i = 0; i <= 15; i++) {
 				ingredientType = `strIngredient${i}`;
 				ingredientAmount = `strMeasure${i}`;
@@ -267,7 +265,6 @@ app.populateSpotlight = function() {
 				}
 			}
 
-
 			$(".howToMixIt").html(drinkInstruction);
 			$(".drinkSpotlight .drinkName").text(drinkName);
 			$(".drinkSpotlight .glassType").text(drinkGlass);
@@ -275,7 +272,7 @@ app.populateSpotlight = function() {
 				.attr("src", `${drinkUrl}`)
 				.attr("alt", drinkName);
 
-			app.populateRelatedDrinks(strIngredient1, strIngredient2, $(this).data("id"));
+			app.populateRelatedDrinks(strIngredient1, strIngredient2, spotlightID);
 		});
 	});
 };
@@ -295,70 +292,77 @@ app.switchToSpotlight = function() {
 	}, 400);
 };
 
+// give user a list of related drinks based on the first two ingredients
 app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
+	$(".relatedDrinks ul").empty();
+	// create first ingredient response
 	const $call1 = $.ajax({
-    url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
-    method: "GET",
-    dataType: "json",
-    data: {
-      i: ingredient1,
+		url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
+		method: "GET",
+		dataType: "json",
+		data: {
+			i: ingredient1
 		}
 	});
-	
+	// create second ingredient response
 	const $call2 = $.ajax({
-    url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
-    method: "GET",
-    dataType: "json",
-    data: {
-      i: ingredient2
-    }
+		url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
+		method: "GET",
+		dataType: "json",
+		data: {
+			i: ingredient2
+		}
 	});
-	
-	$.when($call1, $call2).done(function(drinksArray1, drinksArray2){
 
-		const finalArray = { drinks: [] };
-    
-		differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
-			drinksArray2[0].drinks.forEach(function(itemFromArray2) {
-				if (itemFromArray1.idDrink !== itemFromArray2.idDrink) {
-					
-					finalArray.drinks.push(itemFromArray1);
-				}
-			});
+	$.when($call1, $call2).done(function(drinksArray1, drinksArray2) {
+		// initializing these for comparison logic later
+		console.log(originalID);
+		// const finalArray = [];
+		let finalArray;
+		let longerArray;
+		let shorterArray;
+		// need to find out which is longer
+		const concatArray = [...drinksArray1[0].drinks, ...drinksArray2[0].drinks];
+		const filteredArray = concatArray.filter(item => {
+			if (item.idDrink !== originalID) {
+				return item;
+			}
+		});
+// checking to only return unique values
+		finalArray = filteredArray.filter((item, index) => {
+			return filteredArray.indexOf(item) == index;
 		});
 
-		const newFinalArray = finalArray.drinks.splice(0,6);
-		console.log(newFinalArray);
-    
-		
-		for (let i = 0;i < 4;i++) {
-			if(i<3){
-				const {idDrink, strDrink, strDrinkThumb} = drinksArray1[0].drinks[i];
-				htmlToAppend = `
+		console.log(finalArray)
+
+		// if (drinksArray1[0].drinks.length > drinksArray2[0].drinks.length) {
+		// 	longerArray = drinksArray1[0].drinks;
+		// 	shorterArray = drinksArray2[0].drinks;
+		// } else {
+		// 	longerArray = drinksArray2[0].drinks;
+		// 	shorterArray = drinksArray1[0].drinks;
+		// }
+		// // this gives us an array of drinks that are not duplicate with each other or with the drink that is currently in the spotlight focus
+		// for (let i = 0; i < longerArray.length; i++) {
+		// 	if (
+		// 		longerArray[i] !== shorterArray[i] &&
+		// 		longerArray[i].idDrink !== originalID
+		// 	) {
+		// 		finalArray.drinks.push(longerArray[i]);
+		// 	}
+		// }
+
+		// append these drinks to the related drinks ul
+		for (let i = 0; i < 4; i++) {
+			const { idDrink, strDrink, strDrinkThumb } = finalArray[i];
+			htmlToAppend = `
 				<li data-id="${idDrink}" class="appearJS" tabindex="0">
 				<h3>${strDrink}</h3>
 				<img src="${strDrinkThumb}" alt="${strDrink}" />
 				</li>
 				`;
 
-				$(".relatedDrinks ul").append(htmlToAppend);
-				
-			}
-			else {
-				const { idDrink, strDrink, strDrinkThumb } = drinksArray2[0].drinks[i];
-				
-				htmlToAppend = `
-				<li data-id="${idDrink}" class="appearJS" tabindex="0">
-					<h3>${strDrink}</h3>
-					<img src="${strDrinkThumb}" alt="${strDrink}" />
-				</li>
-				`;
-
-        $(".relatedDrinks ul").append(htmlToAppend);
-      }
-			
+			$(".relatedDrinks ul").append(htmlToAppend);
 		}
-
-	})
-
+	});
 };
