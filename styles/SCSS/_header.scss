@@ -144,8 +144,9 @@ header h2 {
 
 	span {
 		line-height: 0.5;
-		margin: 0;
+		margin: 2px;
 		opacity: 0;
+		font-size: 1rem;
 		animation: appear 1.5s alternate ease-in-out infinite;
 	}
 
@@ -156,6 +157,7 @@ header h2 {
 		text-transform: uppercase;
 		letter-spacing: 2px;
 		animation: appear 4s forwards;
+		margin-bottom: 30px;
 	}
 
 	.dot1 {

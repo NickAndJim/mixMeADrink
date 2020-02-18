@@ -74,6 +74,8 @@
 	display: block;
 	height: 600px;
 	padding: 10px;
+	opacity: 1;
+	transition: opacity 0.4s;
 
 	&:before {
 		content: " ";
@@ -94,6 +96,7 @@
 		align-content: flex-start;
 		height: calc(100% - 10px);
 		overflow-y: scroll;
+		transition: opacity 0.4s;
 	}
 
 	li {

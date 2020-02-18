@@ -1,14 +1,14 @@
 .drinkSpotlight {
 	display: none;
-	// justify-content: space-between;
-	// flex-wrap: wrap;
 	color: black;
 	grid-area: gallery;
 	position: relative;
 	width: 100%;
-	height: 100%;
+	height: 600px;
 	border-radius: 10px;
 	padding: 20px;
+	opacity: 1;
+	transition: opacity 0.4s;
 
 	&:before {
 		content: " ";
@@ -26,9 +26,15 @@
 	.imgContainer {
 		float: left;
 		width: 40%;
+		height: auto;
+		position: relative;
+		margin-bottom: 20px;
+		opacity: 1;
+		transition: opacity 0.4s;
 
 		img {
 			width: 100%;
+			object-fit: cover;
 			border-radius: 10px;
 			box-shadow: 0 0 5px 2px $primary;
 		}
@@ -39,30 +45,35 @@
 		color: $accent;
 		text-transform: uppercase;
 		letter-spacing: 2px;
-		font-size: 2rem;
-		width: 50%;
+		font-size: 3rem;
+		width: 55%;
 		float: right;
 	}
 
 	h3 {
 		text-align: left;
-		margin-top: 20px;
 		position: relative;
 		text-transform: uppercase;
+		font-size: 1.5rem;
+		letter-spacing: 1.5px;
+		line-height: 1;
 	}
 
-	.drinkInfo {
-		position: relative;
+
+	.ingredientParent {
 		float: right;
-		width: 50%;
+		clear: right;
+		position: relative;
+		width: 55%;
 		color: $white;
-	}
+		margin-top: 20px;
+		opacity: 1;
+		transition: opacity 0.4s;
 
-	.ingredientList {
 		li {
 			opacity: 1;
 			font-size: 1.6rem;
-			margin: 0;
+			margin: 5px 0;
 		}
 	}
 
@@ -70,5 +81,16 @@
 		line-height: 1.2;
 		margin: 0;
 		font-size: 1.6rem;
+	}
+
+	.instructionParent {
+		position: relative;
+		float: none;
+		width: 100%;
+		clear: both;
+		color: $white;
+		margin-top: 150px;
+		opacity: 1;
+		transition: opacity 0.4s;
 	}
 }

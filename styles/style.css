@@ -507,8 +507,9 @@ header h2 {
 
 .decoration2 span {
   line-height: 0.5;
-  margin: 0;
+  margin: 2px;
   opacity: 0;
+  font-size: 1rem;
   -webkit-animation: appear 1.5s alternate ease-in-out infinite;
           animation: appear 1.5s alternate ease-in-out infinite;
 }
@@ -522,6 +523,7 @@ header h2 {
   letter-spacing: 2px;
   -webkit-animation: appear 4s forwards;
           animation: appear 4s forwards;
+  margin-bottom: 30px;
 }
 
 .decoration2 .dot1 {
@@ -639,6 +641,9 @@ header h2 {
   display: block;
   height: 600px;
   padding: 10px;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
 
 .drinkGallery:before {
@@ -674,6 +679,8 @@ header h2 {
       align-content: flex-start;
   height: calc(100% - 10px);
   overflow-y: scroll;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
 
 .drinkGallery li {
@@ -746,9 +753,12 @@ h3 {
   grid-area: gallery;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 600px;
   border-radius: 10px;
   padding: 20px;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
 
 .drinkSpotlight:before {
@@ -767,10 +777,18 @@ h3 {
 .drinkSpotlight .imgContainer {
   float: left;
   width: 40%;
+  height: auto;
+  position: relative;
+  margin-bottom: 20px;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
 
 .drinkSpotlight .imgContainer img {
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 5px 2px #3A405A;
           box-shadow: 0 0 5px 2px #3A405A;
@@ -781,33 +799,52 @@ h3 {
   color: #8ce8fb;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 2rem;
-  width: 50%;
+  font-size: 3rem;
+  width: 55%;
   float: right;
 }
 
 .drinkSpotlight h3 {
   text-align: left;
-  margin-top: 20px;
   position: relative;
   text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  line-height: 1;
 }
 
-.drinkSpotlight .drinkInfo {
-  position: relative;
+.drinkSpotlight .ingredientParent {
   float: right;
-  width: 50%;
+  clear: right;
+  position: relative;
+  width: 55%;
   color: #F6F6F6;
+  margin-top: 20px;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
 
-.drinkSpotlight .ingredientList li {
+.drinkSpotlight .ingredientParent li {
   opacity: 1;
   font-size: 1.6rem;
-  margin: 0;
+  margin: 5px 0;
 }
 
 .drinkSpotlight p {
   line-height: 1.2;
   margin: 0;
   font-size: 1.6rem;
+}
+
+.drinkSpotlight .instructionParent {
+  position: relative;
+  float: none;
+  width: 100%;
+  clear: both;
+  color: #F6F6F6;
+  margin-top: 150px;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
