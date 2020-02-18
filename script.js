@@ -135,7 +135,7 @@ app.getDrinksByRandom = function() {
 		const drinkName = response.drinks[0].strDrink;
 		const drinkGlass = response.drinks[0].strGlass;
 		const drinkUrl = response.drinks[0].strDrinkThumb;
-
+		const {strIngredient1, strIngredient2, idDrink} = response.drinks[0];
 		for (i = 0; i <= 15; i++) {
 			ingredientType = `strIngredient${i}`;
 			ingredientAmount = `strMeasure${i}`;
@@ -155,6 +155,7 @@ app.getDrinksByRandom = function() {
 		$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
 		$(".drinkGallery").css("display", "none");
 		$(".drinkSpotlight").css("display", "block");
+		app.populateRelatedDrinks(strIngredient1, strIngredient2, idDrink);
 	});
 };
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
@@ -227,7 +228,7 @@ app.switchToGallery = function() {
 //This function will bring the user away from the user input section and be presented with a drink construction information page on the drink of their choice with the data obtained from an ajax call
 app.populateSpotlight = function() {
 	$(".drinkGallery ul").on("click", "li", function() {
-		console.log("clicked");
+		
 		$(".ingredientList").empty();
 		app.switchToSpotlight();
 
@@ -244,6 +245,7 @@ app.populateSpotlight = function() {
 			const drinkName = response.drinks[0].strDrink;
 			const drinkGlass = response.drinks[0].strGlass;
 			const drinkUrl = response.drinks[0].strDrinkThumb;
+			const {strIngredient1, strIngredient2} = response.drinks[0];
 			for (i = 0; i <= 15; i++) {
 				ingredientType = `strIngredient${i}`;
 				ingredientAmount = `strMeasure${i}`;
@@ -272,6 +274,8 @@ app.populateSpotlight = function() {
 			$(".drinkSpotlight img")
 				.attr("src", `${drinkUrl}`)
 				.attr("alt", drinkName);
+
+			app.populateRelatedDrinks(strIngredient1, strIngredient2, $(this).data("id"));
 		});
 	});
 };
@@ -291,15 +295,70 @@ app.switchToSpotlight = function() {
 	}, 400);
 };
 
-app.populateRelatedDrinks = function(drinkID) {
-	$.ajax({
-    url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
+	const $call1 = $.ajax({
+    url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
     method: "GET",
     dataType: "json",
     data: {
-      i: drinkID
-    }
-	}).then(function(response) {
-		
+      i: ingredient1,
+		}
 	});
+	
+	const $call2 = $.ajax({
+    url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
+    method: "GET",
+    dataType: "json",
+    data: {
+      i: ingredient2
+    }
+	});
+	
+	$.when($call1, $call2).done(function(drinksArray1, drinksArray2){
+
+		const finalArray = { drinks: [] };
+    
+		differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
+			drinksArray2[0].drinks.forEach(function(itemFromArray2) {
+				if (itemFromArray1.idDrink !== itemFromArray2.idDrink) {
+					
+					finalArray.drinks.push(itemFromArray1);
+				}
+			});
+		});
+
+		const newFinalArray = finalArray.drinks.splice(0,6);
+		console.log(newFinalArray);
+    
+		
+		for (let i = 0;i < 4;i++) {
+			if(i<3){
+				const {idDrink, strDrink, strDrinkThumb} = drinksArray1[0].drinks[i];
+				htmlToAppend = `
+				<li data-id="${idDrink}" class="appearJS" tabindex="0">
+				<h3>${strDrink}</h3>
+				<img src="${strDrinkThumb}" alt="${strDrink}" />
+				</li>
+				`;
+
+				$(".relatedDrinks ul").append(htmlToAppend);
+				
+			}
+			else {
+				const { idDrink, strDrink, strDrinkThumb } = drinksArray2[0].drinks[i];
+				
+				htmlToAppend = `
+				<li data-id="${idDrink}" class="appearJS" tabindex="0">
+					<h3>${strDrink}</h3>
+					<img src="${strDrinkThumb}" alt="${strDrink}" />
+				</li>
+				`;
+
+        $(".relatedDrinks ul").append(htmlToAppend);
+      }
+			
+		}
+
+	})
+
 };

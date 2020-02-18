@@ -1,3 +1,17 @@
-.relatedDrinks {
+.relatedDrinks ul{
+    @include flexRow();
+    width: 100%;
+    li {
+        width: 20%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+
+.forMobile {
     display: none;
+
 }
