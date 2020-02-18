@@ -30,8 +30,8 @@ $bodyStack: serif;
 }
 
 //media query mixins
-@mixin maxWidth950 {
-	@media (max-width: 950px) {
+@mixin maxWidth1050 {
+	@media (max-width: 1050px) {
 		@content;
 	}
 }

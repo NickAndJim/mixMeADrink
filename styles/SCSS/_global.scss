@@ -38,5 +38,8 @@ ol {
 	max-width: 1080px;
 	width: 80%;
 	margin: 0 auto;
-	
+
+	@include maxWidth1050 {
+		width: 95%;
+	}
 }

@@ -41,9 +41,8 @@ h1 {
 	width: 500px;
 	font-size: 6rem;
 	line-height: 1;
-	margin: 20px 0;
+	margin: 20px 0 10px;
 	color: $accent;
-	// animation: slideInLeft 2s forwards;
 }
 
 header h2 {
@@ -102,10 +101,12 @@ header h2 {
 	background-size: cover;
 	animation: slideUp 3.5s forwards ease;
 	animation-delay: 1s;
+	z-index: 0;
 }
 
 @keyframes slideUp {
 	0% {
+		z-index: 0;
 		bottom: -400px;
 	}
 
@@ -130,6 +131,7 @@ header h2 {
 	}
 
 	100% {
+		z-index: 0;
 		bottom: 0;
 		opacity: 1;
 	}

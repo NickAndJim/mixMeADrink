@@ -26,7 +26,7 @@ app.smoothScrollFromHeader = function() {
 		);
 	});
 };
-//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userinput
+//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userInput
 app.getDrinksByName = function() {
 	$("form.drinksByNameForm").on("submit", function(e) {
 		e.preventDefault();
@@ -45,7 +45,7 @@ app.getDrinksByName = function() {
 		});
 	});
 };
-//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userinput
+//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userInput
 app.getDrinksByAlcohol = function() {
 	$("form.drinksByAlcoholForm").on("submit", function(e) {
 		e.preventDefault();
@@ -64,7 +64,7 @@ app.getDrinksByAlcohol = function() {
 		});
 	});
 };
-//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userinput. If the user gives 2 inputs, the selection given will only be drinks that contain both ingredients.
+//Function to give the user a selection of drinks based on their search parameter displayed to the right of the userInput. If the user gives 2 inputs, the selection given will only be drinks that contain both ingredients.
 app.getDrinksByIngredient = function() {
 	$("form.drinksByIngredientForm").on("submit", function(e) {
 		e.preventDefault();

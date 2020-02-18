@@ -1,5 +1,7 @@
+main {
+	height: auto;
+}
 .landingPage {
-	height: 80vh;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: auto;
@@ -15,11 +17,10 @@
 	background: url(../assets/backsplash.jpg), black;
 	box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
 	background-size: contain;
-	background-position-y: 100px;
+	background-position-y: bottom;
 	background-repeat: no-repeat;
 	@include flexCol(space-between);
 	height: 600px;
-	margin-bottom: 20px;
 	padding: 10px;
 	border-radius: 10px;
 
@@ -66,8 +67,7 @@
 		background: $white;
 	}
 }
-
-// should we make this gallery scrollable if more than 9 results?
+// start drink gallery styles
 .drinkGallery {
 	grid-area: gallery;
 	position: relative;
@@ -76,6 +76,7 @@
 	padding: 10px;
 	opacity: 1;
 	transition: opacity 0.4s;
+	z-index: 1;
 
 	&:before {
 		content: " ";
@@ -87,7 +88,7 @@
 		height: 100%;
 		width: 100%;
 		opacity: 0.2;
-		z-index: 0;
+		z-index: 1;
 	}
 
 	ul {
@@ -105,21 +106,6 @@
 		width: calc(33% - 20px);
 		margin: 10px;
 		height: 190px;
-
-		// &:first-of-type img {
-		// 	border-radius: 20px 0 0 0;
-		// }
-		// &:nth-of-type(3) img {
-		// 	border-radius: 0 20px 0 0;
-		// }
-
-		// // add class name to li for the bottom ones and then apply it after they've been populated
-		// &:last-of-type img {
-		// 	border-radius: 0 0 20px 0;
-		// }
-		// &:nth-last-of-type(3) img {
-		// 	border-radius: 0 0 0 20px;
-		// }
 
 		img {
 			width: 100%;
@@ -161,8 +147,20 @@ h3 {
 	z-index: 2;
 }
 
-.footer {
+footer {
 	grid-area: footer;
-
-	background: $secondary;
+	position: relative;
+	width: 100%;
+	bottom: 0;
+	background: $black;
+	margin: 10px 0 0 0;
+	padding: 2px;
+	p {
+		margin: 0;
+		line-height: 1;
+		color: $primary;
+		font-size: 1.2rem;
+		text-transform: capitalize;
+		text-align: center;
+	}
 }
