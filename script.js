@@ -6,6 +6,7 @@ app.init = function() {
 	app.getDrinksByAlcohol();
 	app.getDrinksByIngredient();
 	app.populateSpotlight();
+	
 	// separated these so it runs once on load
 	app.getDrinksByRandom();
 	app.getDrinksByRandomListenerEvent();
@@ -159,7 +160,7 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	app.switchToGallery();
-	console.log(response.drinks.length);
+	
 	if (response) {
 		let i = 0;
 		let countDown = 18;
@@ -226,6 +227,7 @@ app.switchToGallery = function() {
 //This function will bring the user away from the user input section and be presented with a drink construction information page on the drink of their choice with the data obtained from an ajax call
 app.populateSpotlight = function() {
 	$(".drinkGallery ul").on("click", "li", function() {
+		console.log("clicked");
 		$(".ingredientList").empty();
 		app.switchToSpotlight();
 
@@ -262,6 +264,8 @@ app.populateSpotlight = function() {
 					$(".ingredientList").append(htmlToAppend);
 				}
 			}
+
+
 			$(".howToMixIt").html(drinkInstruction);
 			$(".drinkSpotlight .drinkName").text(drinkName);
 			$(".drinkSpotlight .glassType").text(drinkGlass);
@@ -285,4 +289,17 @@ app.switchToSpotlight = function() {
 			".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent"
 		).css("opacity", "1");
 	}, 400);
+};
+
+app.populateRelatedDrinks = function(drinkID) {
+	$.ajax({
+    url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+    method: "GET",
+    dataType: "json",
+    data: {
+      i: drinkID
+    }
+	}).then(function(response) {
+		
+	});
 };
