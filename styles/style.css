@@ -777,7 +777,7 @@ footer p {
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
-  z-index: 0;
+  z-index: 1;
   background: #F6F6F633;
   overflow-y: scroll;
 }
@@ -860,6 +860,24 @@ footer p {
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 1;
+}
+
+.drinkSpotlight .glassType {
+  color: #F6F6F6;
+  margin: 5px 0;
+}
+
+.drinkSpotlight .glassType:before {
+  content: "Recommended Glass: ";
+  color: #8ce8fb;
+  position: relative;
+  left: 0;
+}
+
+.relatedDrinks h2 {
+  text-align: center;
+  float: none;
+  margin: 5px auto;
 }
 
 .relatedDrinks ul {

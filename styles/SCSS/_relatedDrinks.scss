@@ -1,29 +1,36 @@
-.relatedDrinks ul{
-    @include flexRow(space-between);
-    width: 100%;
-    z-index: 1;
-    li {
-        padding:5px;
-        position: relative;
-        z-index: 1;
-        width: calc(25% - 10px);
+.relatedDrinks {
+	h2 {
+		text-align: center;
+        float: none;
+        margin: 5px auto;
+	}
 
-        img {
-            width: 100%;
-            height: auto;
-        }
+	ul {
+		@include flexRow(space-between);
+		width: 100%;
+		z-index: 1;
 
-        h3 {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            text-align: center;
-        }
-    }
+		li {
+			padding: 5px;
+			position: relative;
+			z-index: 1;
+			width: calc(25% - 10px);
+
+			img {
+				width: 100%;
+				height: auto;
+			}
+
+			h3 {
+				position: absolute;
+				top: 50%;
+				width: 100%;
+				text-align: center;
+			}
+		}
+	}
 }
 
-
 .forMobile {
-    display: none;
-
+	display: none;
 }

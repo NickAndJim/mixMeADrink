@@ -9,7 +9,7 @@
 	padding: 20px;
 	opacity: 1;
 	transition: opacity 0.4s;
-	z-index: 0;
+	z-index: 1;
 	background: $backing;
 	overflow-y: scroll;
 
@@ -86,5 +86,16 @@
 		opacity: 1;
 		transition: opacity 0.4s;
 		z-index: 1;
+	}
+
+	.glassType {
+		color: $white;
+		margin: 5px 0;
+		&:before {
+			content:"Recommended Glass: ";
+			color: $accent;
+			position: relative;
+			left:0;
+		}
 	}
 }

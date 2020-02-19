@@ -92,6 +92,7 @@ app.getDrinksByIngredient = function() {
 		if (userIngredientInput1 && !userIngredientInput2) {
 			$call1.then(function(response1) {
 				app.populateGallery(response1);
+				console.log(response1.drinks);
 			});
 		} else if (!userIngredientInput1 && userIngredientInput2) {
 			$call2.then(function(response2) {
@@ -100,12 +101,9 @@ app.getDrinksByIngredient = function() {
 		} else if (userIngredientInput1 && userIngredientInput2) {
 			const finalArray = { drinks: [] };
 			$.when($call1, $call2).done(function(drinksArray1, drinksArray2) {
-				differentArray = drinksArray1[0].drinks.filter(function(
-					itemFromArray1
-				) {
+				differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
 					drinksArray2[0].drinks.forEach(function(itemFromArray2) {
 						if (itemFromArray1.idDrink === itemFromArray2.idDrink) {
-							
 							finalArray.drinks.push(itemFromArray1);
 						}
 					});
@@ -161,14 +159,13 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	app.switchToGallery();
-	
+
 	if (response) {
 		let i = 0;
 		let countDown = 18;
 		modArray = response.drinks.slice(0, 18);
-		
+
 		modArray.forEach(function(item) {
-			
 			i++;
 			const drinkTitle = item.strDrink;
 			const drinkID = item.idDrink;
@@ -192,7 +189,6 @@ app.populateGallery = function(response) {
 				<img src="${drinkUrl}" alt="${drinkTitle}" />
 				</li>
 				`;
-				
 			} else {
 				$(".drinkGallery ul").css({
 					"align-content": "flex-start",
@@ -205,7 +201,6 @@ app.populateGallery = function(response) {
 			<img src="${drinkUrl}" alt="${drinkTitle}" />
 			</li>
 			`;
-			
 			}
 
 			setTimeout(function() {
@@ -248,10 +243,12 @@ app.populateSpotlight = function() {
 			const drinkGlass = response.drinks[0].strGlass;
 			const drinkUrl = response.drinks[0].strDrinkThumb;
 			const { strIngredient1, strIngredient2 } = response.drinks[0];
+			// variables to change to count li's and decide if we need to switch to two columns
+			let columnSplit = 0;
+			$(".ingredientList").css("column-count", 1);
 			for (i = 0; i <= 15; i++) {
 				ingredientType = `strIngredient${i}`;
 				ingredientAmount = `strMeasure${i}`;
-
 				// if there's an ingredient
 				if (response.drinks[0][ingredientType]) {
 					// set string to a variable
@@ -266,6 +263,10 @@ app.populateSpotlight = function() {
 						</li>
 					`;
 					$(".ingredientList").append(htmlToAppend);
+					columnSplit++;
+					if (columnSplit > 7){
+						$(".ingredientList").css("column-count", 2);
+					}
 				}
 			}
 
@@ -284,15 +285,11 @@ app.populateSpotlight = function() {
 app.switchToSpotlight = function() {
 	$(".drinkGallery").css("opacity", "0");
 	$(".drinkSpotlight").css("opacity", "1");
-	$(
-		".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent"
-	).css("opacity", "0");
+	$(".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent").css("opacity", "0");
 	setTimeout(function() {
 		$(".drinkGallery").css("display", "none");
 		$(".drinkSpotlight").css("display", "block");
-		$(
-			".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent"
-		).css("opacity", "1");
+		$(".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent").css("opacity", "1");
 	}, 400);
 };
 
@@ -328,10 +325,8 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 		const concatArray = [...drinksArray1[0].drinks, ...drinksArray2[0].drinks];
 		const filteredArray = concatArray.filter(item => {
 			if (item.idDrink != originalID) {
-				
 				return item;
 			}
-			
 		});
 		// checking to only return unique values
 		finalArray = filteredArray.filter((item, index) => {
