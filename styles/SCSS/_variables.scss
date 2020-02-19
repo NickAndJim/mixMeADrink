@@ -48,8 +48,8 @@ $bodyStack: serif;
 	}
 }
 
-@mixin maxWidth600 {
-	@media (max-width: 600px) {
+@mixin maxWidth650 {
+	@media (max-width: 650px) {
 		@content;
 	}
 }

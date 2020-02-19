@@ -12,10 +12,19 @@
 		z-index: 1;
 
 		li {
-			padding: 5px;
 			position: relative;
-			z-index: 1;
 			width: calc(25% - 10px);
+			cursor: pointer;
+			z-index: 1;
+			margin: 5px;
+
+			img {
+				transition: 0.2s all;
+				filter: brightness(100%);
+			}
+			&:hover img {
+				filter: brightness(50%);
+			}
 
 			@include maxWidth930 {
 				width: calc(50% - 20px);

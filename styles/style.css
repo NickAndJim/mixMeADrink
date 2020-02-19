@@ -594,7 +594,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 600px;
+  height: 85vh;
   padding: 10px;
   border-radius: 10px;
 }
@@ -660,7 +660,7 @@ main {
   grid-area: gallery;
   position: relative;
   display: block;
-  height: 600px;
+  height: 85vh;
   padding: 10px;
   opacity: 1;
   -webkit-transition: opacity 0.4s;
@@ -909,10 +909,23 @@ footer p {
 }
 
 .relatedDrinks ul li {
-  padding: 5px;
   position: relative;
-  z-index: 1;
   width: calc(25% - 10px);
+  cursor: pointer;
+  z-index: 1;
+  margin: 5px;
+}
+
+.relatedDrinks ul li img {
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+
+.relatedDrinks ul li:hover img {
+  -webkit-filter: brightness(50%);
+          filter: brightness(50%);
 }
 
 @media (max-width: 930px) {

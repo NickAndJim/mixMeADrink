@@ -10,6 +10,7 @@ app.init = function() {
 	// separated these so it runs once on load
 	app.getDrinksByRandom();
 	app.getDrinksByRandomListenerEvent();
+	app.mockTail();
 };
 
 $(function() {
@@ -347,5 +348,37 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 			finalArray.splice(randomNumber, 1);
 			$(".relatedDrinks ul").append(htmlToAppend);
 		}
+	});
+};
+
+//this function randomizes the order of an array
+app.shuffle = function(array1) {
+	let ctr = array1.length,
+		temp,
+		index; // While there are elements in the array
+	while (ctr > 0) {
+		// Pick a random index
+		index = Math.floor(Math.random() * ctr);
+		// Decrease ctr by 1
+		ctr--;
+		// And swap the last element with it
+		temp = array1[ctr];
+		array1[ctr] = array1[index];
+		array1[index] = temp;
+	}
+	return array1;
+}; //this function populates the gallery with non-alcoholic drinks
+app.mockTail = function() {
+	$("button.mocktailButton").on("click", function() {
+		$.ajax({
+			url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic",
+			method: "GET",
+			dataType: "json"
+		}).then(function(response) {
+			const arrayToRandom = response.drinks;
+			const finalArray = { drinks: app.shuffle(arrayToRandom) };
+			console.log(finalArray);
+			app.populateGallery(finalArray);
+		});
 	});
 };

@@ -20,7 +20,8 @@ main {
 	background-position-y: bottom;
 	background-repeat: no-repeat;
 	@include flexCol(space-evenly);
-	height: 600px;
+	// height: 600px;
+	height: 85vh;
 	padding: 10px;
 	border-radius: 10px;
 
@@ -80,7 +81,8 @@ main {
 	grid-area: gallery;
 	position: relative;
 	display: block;
-	height: 600px;
+	// height: 600px;
+	height: 85vh;
 	padding: 10px;
 	opacity: 1;
 	transition: opacity 0.4s;
