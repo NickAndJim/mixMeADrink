@@ -105,12 +105,12 @@ app.getDrinksByIngredient = function() {
 				) {
 					drinksArray2[0].drinks.forEach(function(itemFromArray2) {
 						if (itemFromArray1.idDrink === itemFromArray2.idDrink) {
-							console.log(finalArray);
+							
 							finalArray.drinks.push(itemFromArray1);
 						}
 					});
 				});
-
+				console.log(finalArray);
 				app.populateGallery(finalArray);
 			});
 		}
@@ -161,12 +161,14 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	app.switchToGallery();
-
+	
 	if (response) {
 		let i = 0;
 		let countDown = 18;
 		modArray = response.drinks.slice(0, 19);
+		
 		modArray.forEach(function(item) {
+			console.log(modArray);
 			i++;
 			const drinkTitle = item.strDrink;
 			const drinkID = item.idDrink;
@@ -324,10 +326,10 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 		const concatArray = [...drinksArray1[0].drinks, ...drinksArray2[0].drinks];
 		const filteredArray = concatArray.filter(item => {
 			if (item.idDrink != originalID) {
-				console.log(item.idDrink);
+				
 				return item;
 			}
-			console.log(originalID);
+			
 		});
 		// checking to only return unique values
 		finalArray = filteredArray.filter((item, index) => {
