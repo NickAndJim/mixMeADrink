@@ -658,19 +658,8 @@ main {
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 1;
-}
-
-.drinkGallery:before {
-  content: " ";
-  position: absolute;
-  background: #F6F6F6;
+  background: #F6F6F633;
   border-radius: 10px;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0.2;
-  z-index: 1;
 }
 
 .drinkGallery ul {
@@ -788,21 +777,9 @@ footer p {
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
-  z-index: 1;
-  background: black;
-}
-
-.drinkSpotlight:before {
-  content: " ";
-  position: absolute;
-  background: #F6F6F6;
-  border-radius: 10px;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0.2;
-  z-index: 1;
+  z-index: 0;
+  background: #F6F6F633;
+  overflow-y: scroll;
 }
 
 .drinkSpotlight .imgContainer {
@@ -814,6 +791,7 @@ footer p {
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  z-index: 1;
 }
 
 .drinkSpotlight .imgContainer img {
@@ -833,6 +811,7 @@ footer p {
   font-size: 3rem;
   width: 55%;
   float: right;
+  z-index: 1;
 }
 
 .drinkSpotlight h3 {
@@ -842,6 +821,7 @@ footer p {
   font-size: 1.5rem;
   letter-spacing: 1.5px;
   line-height: 1;
+  z-index: 1;
 }
 
 .drinkSpotlight .ingredientParent {
@@ -854,6 +834,7 @@ footer p {
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  z-index: 1;
 }
 
 .drinkSpotlight .ingredientParent li {
@@ -878,6 +859,7 @@ footer p {
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  z-index: 1;
 }
 
 .relatedDrinks ul {
@@ -888,19 +870,21 @@ footer p {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
+  z-index: 1;
 }
 
 .relatedDrinks ul li {
+  padding: 5px;
   position: relative;
-  z-index: 2;
-  width: 20%;
+  z-index: 1;
+  width: calc(25% - 10px);
 }
 
 .relatedDrinks ul li img {

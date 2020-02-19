@@ -1,10 +1,12 @@
 .relatedDrinks ul{
-    @include flexRow();
+    @include flexRow(space-between);
     width: 100%;
+    z-index: 1;
     li {
+        padding:5px;
         position: relative;
-        z-index: 2;
-        width: 20%;
+        z-index: 1;
+        width: calc(25% - 10px);
 
         img {
             width: 100%;

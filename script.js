@@ -316,7 +316,6 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 
 	$.when($call1, $call2).done(function(drinksArray1, drinksArray2) {
 		// initializing these for comparison logic later
-		console.log(originalID);
 		// const finalArray = [];
 		let finalArray;
 		let longerArray;
@@ -324,37 +323,21 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 		// need to find out which is longer
 		const concatArray = [...drinksArray1[0].drinks, ...drinksArray2[0].drinks];
 		const filteredArray = concatArray.filter(item => {
-			if (item.idDrink !== originalID) {
+			if (item.idDrink != originalID) {
+				console.log(item.idDrink);
 				return item;
 			}
+			console.log(originalID);
 		});
-// checking to only return unique values
+		// checking to only return unique values
 		finalArray = filteredArray.filter((item, index) => {
 			return filteredArray.indexOf(item) == index;
 		});
 
-		console.log(finalArray)
-
-		// if (drinksArray1[0].drinks.length > drinksArray2[0].drinks.length) {
-		// 	longerArray = drinksArray1[0].drinks;
-		// 	shorterArray = drinksArray2[0].drinks;
-		// } else {
-		// 	longerArray = drinksArray2[0].drinks;
-		// 	shorterArray = drinksArray1[0].drinks;
-		// }
-		// // this gives us an array of drinks that are not duplicate with each other or with the drink that is currently in the spotlight focus
-		// for (let i = 0; i < longerArray.length; i++) {
-		// 	if (
-		// 		longerArray[i] !== shorterArray[i] &&
-		// 		longerArray[i].idDrink !== originalID
-		// 	) {
-		// 		finalArray.drinks.push(longerArray[i]);
-		// 	}
-		// }
-
 		// append these drinks to the related drinks ul
 		for (let i = 0; i < 4; i++) {
-			const { idDrink, strDrink, strDrinkThumb } = finalArray[i];
+			let randomNumber = Math.floor(Math.random() * finalArray.length);
+			const { idDrink, strDrink, strDrinkThumb } = finalArray[randomNumber];
 			htmlToAppend = `
 				<li data-id="${idDrink}" class="appearJS" tabindex="0">
 				<h3>${strDrink}</h3>
@@ -362,6 +345,7 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 				</li>
 				`;
 
+			finalArray.splice(randomNumber, 1);
 			$(".relatedDrinks ul").append(htmlToAppend);
 		}
 	});
