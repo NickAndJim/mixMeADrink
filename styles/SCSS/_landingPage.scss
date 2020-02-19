@@ -19,7 +19,7 @@ main {
 	background-size: contain;
 	background-position-y: bottom;
 	background-repeat: no-repeat;
-	@include flexCol(space-between);
+	@include flexCol(space-evenly);
 	height: 600px;
 	padding: 10px;
 	border-radius: 10px;
@@ -43,12 +43,14 @@ main {
 		font-size: 2rem;
 		z-index: 1;
 	}
+
 	button,
 	input {
 		padding: 5px;
 		margin: 2.5px;
 		width: 100%;
 		border-radius: 5px;
+		z-index: 1;	
 	}
 	label,
 	h2 {
@@ -57,6 +59,7 @@ main {
 	}
 	button {
 		background: $accent;
+		font-size: 2rem;
 		&:hover {
 			cursor: pointer;
 		}

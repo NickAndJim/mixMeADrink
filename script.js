@@ -115,8 +115,10 @@ app.getDrinksByIngredient = function() {
 	});
 };
 //This function will bring the user away from the user input section and be presented with a drink construction information page on a random drink with the data obtained from an ajax call
+// $(".feelingLuckyForm").on("submit", function(event) {
 app.getDrinksByRandomListenerEvent = function() {
-	$(".feelingLuckyForm").on("submit", function(event) {
+	$(".feelingLuckyButton").on("click", function(event) {
+		console.log('fizz')
 		event.preventDefault();
 		app.getDrinksByRandom();
 	});
@@ -264,7 +266,7 @@ app.populateSpotlight = function() {
 					`;
 					$(".ingredientList").append(htmlToAppend);
 					columnSplit++;
-					if (columnSplit > 7){
+					if (columnSplit > 7) {
 						$(".ingredientList").css("column-count", 2);
 					}
 				}
@@ -329,8 +331,8 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 			}
 		});
 		// checking to only return unique values
-		finalArray = filteredArray.filter((item, index) => {
-			return filteredArray.indexOf(item) == index;
+		finalArray = filteredArray.filter((item, index, originalArray) => {
+			return originalArray.indexOf(item) === index;
 		});
 
 		// append these drinks to the related drinks ul
