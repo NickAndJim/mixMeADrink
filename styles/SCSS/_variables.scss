@@ -1,33 +1,31 @@
 // variables
-$primary: #3A405A;
-$secondary: #F9DEC9;
-$tertiary: #F9F7F3;
+$primary: #3a405a;
+$secondary: #f9dec9;
+$tertiary: #f9f7f3;
 $accent: #8ce8fb;
-$black: #1F1F1F;
-$white: #F6F6F6;
-$backing: #F6F6F633;
-$background:#2a1824;
-
+$black: #1f1f1f;
+$white: #f6f6f6;
+$backing: #f6f6f633;
+$background: #2a1824;
 
 @import url("https://fonts.googleapis.com/css?family=Arima+Madurai|Forum|Poiret+One&display=swap");
 
 $mainStack: "Poiret One", cursive;
 $bodyStack: serif;
 
-
 //mixins
 @mixin flexRow($justify: center) {
-    display: flex;
-    flex-direction: row;
-    justify-content: $justify;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: $justify;
+	align-items: center;
 }
 
 @mixin flexCol($align: center) {
-    display: flex;
-    flex-direction: column;
-    justify-content: $align;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: $align;
+	align-items: center;
 }
 
 //media query mixins
@@ -37,6 +35,13 @@ $bodyStack: serif;
 	}
 }
 
+@mixin maxWidth930 {
+	@media (max-width: 930px) {
+		@content;
+	}
+}
+
+// this will be a major break point
 @mixin maxWidth740 {
 	@media (max-width: 740px) {
 		@content;

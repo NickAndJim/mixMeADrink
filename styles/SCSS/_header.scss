@@ -93,11 +93,15 @@ header h2 {
 	position: absolute;
 	right: 0;
 	bottom: -400px;
-	height: 350px;
-	width: 350px;
+	// height: 350px;
+	// width: 350px;
+	height: 35%;
+	width: 35%;
 	opacity: 0;
 	background: url(../assets/main2.png);
 	background-size: cover;
+	background-position-y: top;
+	background-position-x: 40%;
 	animation: slideUp 3.5s forwards ease;
 	animation-delay: 1s;
 	z-index: 0;

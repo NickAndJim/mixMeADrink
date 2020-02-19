@@ -39,7 +39,6 @@ main {
 
 	form {
 		width: 100%;
-		padding: 5px;
 		font-size: 2rem;
 		z-index: 1;
 	}
@@ -50,8 +49,9 @@ main {
 		margin: 2.5px;
 		width: 100%;
 		border-radius: 5px;
-		z-index: 1;	
+		z-index: 1;
 	}
+
 	label,
 	h2 {
 		color: $accent;
@@ -68,6 +68,11 @@ main {
 	input {
 		border: 2px solid $secondary;
 		background: $white;
+
+		&:focus {
+			border: 3px solid $accent;
+			margin: 1.5px;
+		}
 	}
 }
 // start drink gallery styles
@@ -82,7 +87,6 @@ main {
 	z-index: 1;
 	background: $backing;
 	border-radius: 10px;
-
 
 	ul {
 		@include flexRow(flex-start);

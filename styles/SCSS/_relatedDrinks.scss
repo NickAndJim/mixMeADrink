@@ -1,12 +1,13 @@
 .relatedDrinks {
 	h2 {
 		text-align: center;
-        float: none;
-        margin: 5px auto;
+		float: none;
+		margin: 5px auto;
 	}
 
 	ul {
 		@include flexRow(space-between);
+		flex-wrap: wrap;
 		width: 100%;
 		z-index: 1;
 
@@ -16,9 +17,17 @@
 			z-index: 1;
 			width: calc(25% - 10px);
 
+			@include maxWidth930 {
+				width: calc(50% - 20px);
+				height: 120px;
+			}
+
 			img {
 				width: 100%;
-				height: auto;
+				height: 100%;
+				border-radius: 10px;
+				object-position: top;
+				object-fit: cover;
 			}
 
 			h3 {

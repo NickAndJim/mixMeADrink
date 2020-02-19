@@ -115,10 +115,8 @@ app.getDrinksByIngredient = function() {
 	});
 };
 //This function will bring the user away from the user input section and be presented with a drink construction information page on a random drink with the data obtained from an ajax call
-// $(".feelingLuckyForm").on("submit", function(event) {
 app.getDrinksByRandomListenerEvent = function() {
 	$(".feelingLuckyButton").on("click", function(event) {
-		console.log('fizz')
 		event.preventDefault();
 		app.getDrinksByRandom();
 	});
