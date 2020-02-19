@@ -165,10 +165,10 @@ app.populateGallery = function(response) {
 	if (response) {
 		let i = 0;
 		let countDown = 18;
-		modArray = response.drinks.slice(0, 19);
+		modArray = response.drinks.slice(0, 18);
 		
 		modArray.forEach(function(item) {
-			console.log(modArray);
+			
 			i++;
 			const drinkTitle = item.strDrink;
 			const drinkID = item.idDrink;
@@ -192,6 +192,7 @@ app.populateGallery = function(response) {
 				<img src="${drinkUrl}" alt="${drinkTitle}" />
 				</li>
 				`;
+				
 			} else {
 				$(".drinkGallery ul").css({
 					"align-content": "flex-start",
@@ -204,9 +205,10 @@ app.populateGallery = function(response) {
 			<img src="${drinkUrl}" alt="${drinkTitle}" />
 			</li>
 			`;
+			
 			}
 
-			const appending = setTimeout(function() {
+			setTimeout(function() {
 				$(".drinkGallery ul").append(htmlToAppend);
 				countDown -= 1;
 			}, 200 + i);
@@ -216,13 +218,13 @@ app.populateGallery = function(response) {
 };
 
 app.switchToGallery = function() {
+	$(".drinkGallery ul").empty();
 	$(".drinkGallery").css("opacity", "1");
 	$(".drinkGallery ul").css("opacity", "0");
 	$(".drinkSpotlight").css("opacity", "0");
 	setTimeout(function() {
 		$(".drinkGallery").css("display", "block");
 		$(".drinkSpotlight").css("display", "none");
-		$(".drinkGallery ul").empty();
 		$(".drinkGallery ul").css("opacity", "1");
 	}, 400);
 };
