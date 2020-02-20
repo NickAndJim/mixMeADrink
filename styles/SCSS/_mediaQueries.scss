@@ -8,4 +8,23 @@
     .relatedDrinks {
         margin: 0 auto;
     }
+
+    .drinkFilters {
+        position: absolute;
+        top:0;
+        left: 100vw;
+        z-index: 100;
+        width: 100%;
+        height: 84vh;
+        
+        transition: left 0.5s;
+
+        &.showDrinksFilter {
+        left:0;
+        }
+    }
+
+    
+
+
 }

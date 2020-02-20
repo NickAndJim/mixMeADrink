@@ -565,6 +565,7 @@ header h2 {
 
 main {
   height: auto;
+  position: relative;
 }
 
 .landingPage {
@@ -574,7 +575,7 @@ main {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -1034,5 +1035,18 @@ footer p {
   }
   .relatedDrinks {
     margin: 0 auto;
+  }
+  .drinkFilters {
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    z-index: 100;
+    width: 100%;
+    height: 84vh;
+    -webkit-transition: left 0.5s;
+    transition: left 0.5s;
+  }
+  .drinkFilters.showDrinksFilter {
+    left: 0;
   }
 }

@@ -12,6 +12,7 @@ app.init = function() {
 	app.getDrinksByRandom();
 	app.getDrinksByRandomListenerEvent();
 	app.mockTail();
+	app.hamburger();
 };
 
 $(function() {
@@ -364,6 +365,12 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 		}
 	});
 };
+
+app.hamburger = function() {
+	$(".hamburger").on("click", function() {
+		$(".drinkFilters").toggleClass("showDrinksFilter");
+	})
+}
 
 //this function randomizes the order of an array
 app.shuffle = function(array1) {
