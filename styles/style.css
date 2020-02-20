@@ -292,6 +292,12 @@ ol {
   height: 120vh;
 }
 
+@media (max-width: 1050px) {
+  .headerWrapper {
+    width: 95%;
+  }
+}
+
 header {
   top: 0;
   background-image: url(../assets/mainFinal.png);
@@ -299,7 +305,7 @@ header {
   background-repeat: no-repeat;
   background-position: center;
   height: 120vh;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   opacity: 0;
@@ -572,6 +578,12 @@ main {
   grid-gap: 15px;
 }
 
+@media (max-width: 630px) {
+  .landingPage {
+    display: block;
+  }
+}
+
 .drinkFilters {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
@@ -591,9 +603,9 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -603,6 +615,15 @@ main {
   height: 84vh;
   padding: 10px;
   border-radius: 10px;
+}
+
+@media (max-width: 630px) {
+  .drinkFilters {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: 35vh;
+    padding: 5px;
+  }
 }
 
 .drinkFilters:before {
@@ -622,6 +643,13 @@ main {
   width: 100%;
   font-size: 2rem;
   z-index: 1;
+}
+
+@media (max-width: 630px) {
+  .drinkFilters form {
+    height: 50%;
+    width: 30%;
+  }
 }
 
 .drinkFilters button,
@@ -648,9 +676,41 @@ main {
   cursor: pointer;
 }
 
+@media (max-width: 630px) {
+  .drinkFilters .drinksByIngredientForm {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .drinkFilters .drinksByIngredientForm .ingredient1Input {
+    margin-bottom: 15%;
+  }
+}
+
 .drinkFilters .feelingLuckyButton,
 .drinkFilters .mocktailButton {
   background: #fcd29f;
+}
+
+@media (max-width: 630px) {
+  .drinkFilters .feelingLuckyButton,
+  .drinkFilters .mocktailButton {
+    height: 18%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 30%;
+  }
 }
 
 .drinkFilters input {
@@ -907,9 +967,9 @@ footer p {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;

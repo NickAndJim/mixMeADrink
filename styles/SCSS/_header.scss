@@ -4,6 +4,10 @@
 	margin: 0 auto;
 	position: relative;
 	height: 120vh;
+
+	@include maxWidth1050 {
+		width: 95%;
+	}
 }
 header {
 	top: 0;
@@ -12,7 +16,7 @@ header {
 	background-repeat: no-repeat;
 	background-position: center;
 	height: 120vh;
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 	position: relative;
 	opacity: 0;

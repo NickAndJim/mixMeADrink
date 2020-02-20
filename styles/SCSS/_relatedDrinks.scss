@@ -6,7 +6,7 @@
 	}
 
 	ul {
-		@include flexRow(space-between);
+		@include flexRow(space-evenly);
 		flex-wrap: wrap;
 		width: 100%;
 		z-index: 1;
