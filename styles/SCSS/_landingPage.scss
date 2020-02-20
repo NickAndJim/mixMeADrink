@@ -20,8 +20,9 @@ main {
 	background-position-y: bottom;
 	background-repeat: no-repeat;
 	@include flexCol(space-evenly);
+	align-items: baseline;
 	// height: 600px;
-	height: 85vh;
+	height: 84vh;
 	padding: 10px;
 	border-radius: 10px;
 
@@ -66,6 +67,13 @@ main {
 		}
 	}
 
+	.feelingLuckyButton,
+	.mocktailButton {
+		// color: #f7567c;
+		background: #fcd29f;
+		// background: #fcab64;
+	}
+
 	input {
 		border: 2px solid $secondary;
 		background: $white;
@@ -82,7 +90,7 @@ main {
 	position: relative;
 	display: block;
 	// height: 600px;
-	height: 85vh;
+	height: 84vh;
 	padding: 10px;
 	opacity: 1;
 	transition: opacity 0.4s;

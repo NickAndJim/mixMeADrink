@@ -155,6 +155,7 @@ app.getDrinksByRandom = function() {
 		$(".drinkGallery").css("display", "none");
 		$(".drinkSpotlight").css("display", "block");
 		app.populateRelatedDrinks(strIngredient1, strIngredient2, idDrink);
+		$(".drinkSpotlight").css("opacity", "1");
 	});
 };
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
@@ -274,9 +275,13 @@ app.populateSpotlight = function() {
 			$(".howToMixIt").html(drinkInstruction);
 			$(".drinkSpotlight .drinkName").text(drinkName);
 			$(".drinkSpotlight .glassType").text(drinkGlass);
+			$(".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent").css("opacity", "0");
 			$(".drinkSpotlight img")
 				.attr("src", `${drinkUrl}`)
 				.attr("alt", drinkName);
+			setTimeout(function() {
+				$(".drinkSpotlight h2, .imgContainer, .ingredientParent, .instructionParent").css("opacity", "1");
+			}, 400);
 
 			app.populateRelatedDrinks(strIngredient1, strIngredient2, spotlightID);
 		});

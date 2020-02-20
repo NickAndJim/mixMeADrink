@@ -17,6 +17,7 @@ header {
 	position: relative;
 	opacity: 0;
 	animation: appear 2s linear forwards;
+	z-index: 0;
 }
 
 .appearJS {
@@ -42,6 +43,8 @@ h1 {
 	line-height: 1;
 	margin: 20px 0 10px;
 	color: $accent;
+	text-shadow: 1px 1px 1px black;
+	z-index: 1;
 }
 
 header h2 {

@@ -305,6 +305,7 @@ header {
   opacity: 0;
   -webkit-animation: appear 2s linear forwards;
           animation: appear 2s linear forwards;
+  z-index: 0;
 }
 
 .appearJS {
@@ -342,6 +343,8 @@ h1 {
   line-height: 1;
   margin: 20px 0 10px;
   color: #8ce8fb;
+  text-shadow: 1px 1px 1px black;
+  z-index: 1;
 }
 
 header h2 {
@@ -594,7 +597,10 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 85vh;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  height: 84vh;
   padding: 10px;
   border-radius: 10px;
 }
@@ -642,6 +648,11 @@ main {
   cursor: pointer;
 }
 
+.drinkFilters .feelingLuckyButton,
+.drinkFilters .mocktailButton {
+  background: #fcd29f;
+}
+
 .drinkFilters input {
   border: 2px solid #f9dec9;
   background: #f6f6f6;
@@ -660,13 +671,13 @@ main {
   grid-area: gallery;
   position: relative;
   display: block;
-  height: 85vh;
+  height: 84vh;
   padding: 10px;
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 1;
-  background: #f6f6f633;
+  background: #313131;
   border-radius: 10px;
 }
 
@@ -779,14 +790,14 @@ footer p {
   grid-area: gallery;
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 84vh;
   border-radius: 10px;
   padding: 20px;
   opacity: 1;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 1;
-  background: #f6f6f633;
+  background: #313131;
   overflow-y: scroll;
 }
 

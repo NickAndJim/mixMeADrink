@@ -4,7 +4,8 @@
 	grid-area: gallery;
 	position: relative;
 	width: 100%;
-	height: 600px;
+	// height: 600px;
+	height: 84vh;
 	border-radius: 10px;
 	padding: 20px;
 	opacity: 1;
@@ -51,7 +52,6 @@
 		z-index: 1;
 	}
 
-
 	.ingredientParent {
 		float: right;
 		clear: right;
@@ -92,10 +92,10 @@
 		color: $white;
 		margin: 5px 0;
 		&:before {
-			content:"Recommended Glass: ";
+			content: "Recommended Glass: ";
 			color: $accent;
 			position: relative;
-			left:0;
+			left: 0;
 		}
 	}
 }
