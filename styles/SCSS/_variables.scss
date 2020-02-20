@@ -42,8 +42,8 @@ $bodyStack: serif;
 }
 
 // this will be a major break point
-@mixin maxWidth740 {
-	@media (max-width: 740px) {
+@mixin maxWidth750 {
+	@media (max-width: 750px) {
 		@content;
 	}
 }

@@ -1,0 +1,11 @@
+@media (max-width: 750px) {
+	.drinkSpotlight,
+	.drinkGallery {
+		height: auto;
+		overflow-y: initial;
+    }
+    
+    .relatedDrinks {
+        margin: 0 auto;
+    }
+}

@@ -22,8 +22,12 @@
 				transition: 0.2s all;
 				filter: brightness(100%);
 			}
-			&:hover img {
+			&:hover img,
+			&:focus img {
 				filter: brightness(50%);
+			}
+			&:focus {
+				outline: 4px dotted $secondary;
 			}
 
 			@include maxWidth930 {

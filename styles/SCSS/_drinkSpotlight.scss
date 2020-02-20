@@ -13,12 +13,14 @@
 	z-index: 1;
 	background: $backing;
 	overflow-y: scroll;
-	flex-wrap: wrap;
-	justify-content: space-between;
 
+	.subContainer {
+		@include flexRow();
+		flex-wrap: wrap;
+		align-content: center;
+	}
 	.focusDrink {
 		width: 100%;
-
 	}
 
 	.imgContainer {

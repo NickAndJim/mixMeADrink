@@ -10,7 +10,7 @@ main {
 		"form gallery gallery";
 	grid-gap: 15px;
 
-	@include maxWidth630 {
+	@include maxWidth750 {
 		display: block;
 	}
 }
@@ -18,102 +18,89 @@ main {
 .drinkFilters {
 	grid-area: form;
 	position: relative;
-	background: url(../assets/backsplash.jpg), black;
-	box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
-	background-size: contain;
-	background-position-y: bottom;
-	background-repeat: no-repeat;
-	@include flexCol(space-between);
+	// background: url(../assets/backsplash.png), black;
+	background: linear-gradient(to bottom, #23232322, #23232322 ), url(../assets/filterImage2);
+	// box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+	background-size: cover;
+	background-position: center;
+	@include flexCol(space-around);
 	align-items: baseline;
 	// height: 600px;
 	height: 84vh;
 	padding: 10px;
 	border-radius: 10px;
+	overflow-y: scroll;
 
-	@include maxWidth630 {
-		flex-wrap: wrap;
-		height: 35vh;
-		padding: 5px;
-	}
-
-	&:before {
-		content: " ";
-		position: absolute;
-		background: $white;
-		border-radius: 10px;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0.2;
-		z-index: 0;
-	}
+	// &:before {
+	// 	content: " ";
+	// 	position: absolute;
+	// 	background: $white;
+	// 	border-radius: 10px;
+	// 	top: 0;
+	// 	left: 0;
+	// 	height: 100%;
+	// 	width: 100%;
+	// 	opacity: 0.2;
+	// 	z-index: 0;
+	// }
 
 	form {
+		font-family: $mainStack;
 		width: 100%;
 		font-size: 2rem;
 		z-index: 1;
-
-		@include maxWidth630 {
-			height: 50%;
-			width: 30%;
-		}
+		@include flexCol(space-around);
+		align-items: flex-start;
+		margin:2px 0;
 	}
 
 	button,
 	input {
-		padding: 5px;
-		margin: 2.5px;
 		width: 100%;
+		margin: 2.5px 0;
 		border-radius: 5px;
 		z-index: 1;
+		&:focus {
+			outline: 4px dotted $secondary;
+		}
+	}
+
+	button {
+		align-self: center;
 	}
 
 	label,
 	h2 {
-		color: $accent;
-		text-shadow: 1px 1px 2px black, -1px 1px 2px black;
+		color: $tertiary;
+		text-shadow: 1px 1px 3px black, -1px 1px 3px black;
+		font-weight: 600;
+	}
+
+	input {
+		padding: 3.5%;
 	}
 	button {
+		padding: 2.5%;
+		margin: 7.5px auto;
 		background: $accent;
 		font-size: 2rem;
-		transition: all 0.5s;
-		&:hover {
+		transition: background 0.5s;
+		&:hover,
+		&:focus {
 			cursor: pointer;
 			color: $accent;
 			background: black;
 		}
 	}
-	.drinksByIngredientForm {
-		@include maxWidth630 {
-			height: 100%;
-			@include flexCol(flex-start);
-			.ingredient1Input {
-				margin-bottom: 15%;
-			}
-		}
-	}
+
 	.feelingLuckyButton,
 	.mocktailButton {
-		// color: #f7567c;
 		background: #fcd29f;
-		// background: #fcab64;
-		@include maxWidth630 {
-			height: 18%;
-			// margin: 4.25% 0;
-			flex-wrap: wrap;
-			width: 30%;
-		}
 	}
 
 	input {
 		border: 2px solid $secondary;
 		background: $white;
-
-		&:focus {
-			border: 3px solid $accent;
-			margin: 1.5px;
-		}
 	}
 }
 // start drink gallery styles

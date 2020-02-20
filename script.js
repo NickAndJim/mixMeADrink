@@ -6,6 +6,7 @@ app.init = function() {
 	app.getDrinksByAlcohol();
 	app.getDrinksByIngredient();
 	app.populateSpotlight();
+	app.accessibleSpotlight();
 
 	// separated these so it runs once on load
 	app.getDrinksByRandom();
@@ -153,7 +154,7 @@ app.getDrinksByRandom = function() {
 		$(".drinkSpotlight .glassType").html(drinkGlass);
 		$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
 		$(".drinkGallery").css("display", "none");
-		$(".drinkSpotlight").css("display", "flex");
+		$(".drinkSpotlight").css("display", "block");
 		app.populateRelatedDrinks(strIngredient1, strIngredient2, idDrink);
 		$(".drinkSpotlight").css("opacity", "1");
 	});
@@ -224,6 +225,14 @@ app.switchToGallery = function() {
 		$(".drinkSpotlight").css("display", "none");
 		$(".drinkGallery ul").css("opacity", "1");
 	}, 400);
+};
+
+app.accessibleSpotlight = function() {
+	$(".drinkGallery ul, .relatedDrinks ul").on("keyup", "li", function(event) {
+		if (event.which === 13) {
+			$(this).click();
+		}
+	});
 };
 
 //This function will bring the user away from the user input section and be presented with a drink construction information page on the drink of their choice with the data obtained from an ajax call
