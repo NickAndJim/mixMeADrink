@@ -77,8 +77,11 @@ main {
 	button {
 		background: $accent;
 		font-size: 2rem;
+		transition: all 0.5s;
 		&:hover {
 			cursor: pointer;
+			color: $accent;
+			background: black;
 		}
 	}
 	.drinksByIngredientForm {
