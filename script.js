@@ -153,7 +153,7 @@ app.getDrinksByRandom = function() {
 		$(".drinkSpotlight .glassType").html(drinkGlass);
 		$(".drinkSpotlight img").attr("src", `${drinkUrl}`);
 		$(".drinkGallery").css("display", "none");
-		$(".drinkSpotlight").css("display", "block");
+		$(".drinkSpotlight").css("display", "flex");
 		app.populateRelatedDrinks(strIngredient1, strIngredient2, idDrink);
 		$(".drinkSpotlight").css("opacity", "1");
 	});

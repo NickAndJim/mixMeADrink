@@ -13,6 +13,13 @@
 	z-index: 1;
 	background: $backing;
 	overflow-y: scroll;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.focusDrink {
+		width: 100%;
+
+	}
 
 	.imgContainer {
 		float: left;

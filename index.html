@@ -46,7 +46,8 @@
 					</form>
 					<form action="#" name="drinksByIngredientForm" class="drinksByIngredientForm form">
 						<label for="drinksByIngredient1" class="ingredient1Label">Drinks by Ingredient</label>
-						<input type="text" name="drinksByIngredient1" id="drinksByIngredient1" class="ingredient1Input placeholder="ie. coffee" />
+						<input type="text" name="drinksByIngredient1" id="drinksByIngredient1" class="ingredient1Input
+						placeholder="ie. coffee" />
 						<label for="drinksByIngredient2">Second Ingredient (optional)</label
 						><input type="text" name="drinksByIngredient2" id="drinksByIngredient2" placeholder="ie. sugar" />
 						<button type="submit">Mix me A Drink</button>
@@ -61,22 +62,23 @@
 				</section>
 
 				<section class="drinkSpotlight clearfix">
-					<div class="imgContainer">
-						<img src="https://placebear.com/400/400" alt="" />
-					</div>
+					<div class="focusDrink">
+						<div class="imgContainer">
+							<img src="https://placebear.com/400/400" alt="" />
+						</div>
 
-					<h2 class="drinkName">Drink Title</h2>
+						<h2 class="drinkName">Drink Title</h2>
 
-					<div class="ingredientParent">
-						<h3>ingredients</h3>
-						<ul class="ingredientList"></ul>
+						<div class="ingredientParent">
+							<h3>ingredients</h3>
+							<ul class="ingredientList"></ul>
+						</div>
+						<div class="instructionParent">
+							<h3>how to mix it</h3>
+							<p class="howToMixIt"></p>
+						</div>
+						<p class="glassType"></p>
 					</div>
-					<div class="instructionParent">
-						<h3>how to mix it</h3>
-						<p class="howToMixIt"></p>
-					</div>
-					<p class="glassType"></p>
-
 					<div class="relatedDrinks forDesktop">
 						<h2>related drinks</h2>
 						<ul>

@@ -574,7 +574,7 @@ main {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -863,6 +863,15 @@ footer p {
   z-index: 1;
   background: #313131;
   overflow-y: scroll;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.drinkSpotlight .focusDrink {
+  width: 100%;
 }
 
 .drinkSpotlight .imgContainer {
