@@ -167,6 +167,7 @@ app.getDrinksByIngredient = function() {
 				});
 		} else if (userIngredientInput1 && userIngredientInput2) {
 			const finalArray = { drinks: [] };
+			
 			$.when($call1, $call2)
 				.done(function(drinksArray1, drinksArray2) {
 					differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
@@ -176,7 +177,17 @@ app.getDrinksByIngredient = function() {
 							}
 						});
 					});
-					app.populateGallery(finalArray);
+					console.log(finalArray.drinks)
+					//checking to see if the search resulted in anything
+					if (finalArray.drinks.length > 0) {
+						app.populateGallery(finalArray);
+					} else if (finalArray.drinks.length === 0) {
+						app.switchToGallery();
+            htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
+            $(".drinkGallery ul").append(htmlToAppend);
+					}
+					
+					
 				})
 				//This catches when the response is empty
 				.fail(function(response) {
