@@ -63,6 +63,7 @@ app.getDrinksByName = function() {
 		}).then(function(response) {
 			if (userDrinksInput != "") {
 				if (response.drinks === null) {
+					//This catches when the response returned is empty
 					app.switchToGallery();
 					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
 					$(".drinkGallery ul").append(htmlToAppend);
@@ -71,6 +72,7 @@ app.getDrinksByName = function() {
 					app.populateGallery(response);
 				}
 			} else {
+				//This catches when the user submits an empty input
 				app.switchToGallery();
 				htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
 				$(".drinkGallery ul").append(htmlToAppend);
@@ -95,12 +97,14 @@ app.getDrinksByAlcohol = function() {
 				if (userAlcoholInput != "") {
 					app.populateGallery(response);
 				} else {
+					//This catches when the user submits an empty input
 					app.switchToGallery();
 					htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
 					$(".drinkGallery ul").append(htmlToAppend);
 				}
 			})
 			.fail(function(response) {
+				//This catches when the response returned is empty
 				app.switchToGallery();
 				htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
 				$(".drinkGallery ul").append(htmlToAppend);
@@ -113,6 +117,13 @@ app.getDrinksByIngredient = function() {
 		e.preventDefault();
 		const userIngredientInput1 = $("#drinksByIngredient1").val();
 		const userIngredientInput2 = $("#drinksByIngredient2").val();
+
+		if (!userIngredientInput1 && !userIngredientInput2) {
+			app.switchToGallery();
+      htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
+      $(".drinkGallery ul").append(htmlToAppend);
+		}
+
 		const $call1 = $.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
 			method: "GET",
@@ -134,6 +145,7 @@ app.getDrinksByIngredient = function() {
 				.then(function(response1) {
 					app.populateGallery(response1);
 				})
+				//This catches when the response is empty
 				.fail(function(response) {
 					app.switchToGallery();
 					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
@@ -141,26 +153,34 @@ app.getDrinksByIngredient = function() {
 				});
 		} else if (!userIngredientInput1 && userIngredientInput2) {
 			$call2
-				.then(function(response2) {
-					app.populateGallery(response2);
-				})
-				.fail(function(response) {
-					app.switchToGallery();
-					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
-					$(".drinkGallery ul").append(htmlToAppend);
-				});
+        .then(function(response2) {
+          app.populateGallery(response2);
+        })
+        //This catches when the response is empty
+        .fail(function(response) {
+          app.switchToGallery();
+          htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+          $(".drinkGallery ul").append(htmlToAppend);
+        });
 		} else if (userIngredientInput1 && userIngredientInput2) {
 			const finalArray = { drinks: [] };
-			$.when($call1, $call2).done(function(drinksArray1, drinksArray2) {
-				differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
-					drinksArray2[0].drinks.forEach(function(itemFromArray2) {
-						if (itemFromArray1.idDrink === itemFromArray2.idDrink) {
-							finalArray.drinks.push(itemFromArray1);
-						}
-					});
-				});
-				app.populateGallery(finalArray);
-			});
+			$.when($call1, $call2)
+        .done(function(drinksArray1, drinksArray2) {
+          differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
+            drinksArray2[0].drinks.forEach(function(itemFromArray2) {
+              if (itemFromArray1.idDrink === itemFromArray2.idDrink) {
+                finalArray.drinks.push(itemFromArray1);
+              }
+            });
+          });
+          app.populateGallery(finalArray);
+				})
+				//This catches when the response is empty
+        .fail(function(response) {
+          app.switchToGallery();
+          htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+          $(".drinkGallery ul").append(htmlToAppend);
+        });
 		}
 	});
 };
@@ -171,7 +191,7 @@ app.getDrinksByRandomListenerEvent = function() {
 		app.getDrinksByRandom();
 	});
 };
-
+//Basic function that allows the user to find information on a specific alcoholic or non-alcoholic drink that they know the name to.
 app.getDrinksByRandom = function() {
 	$.ajax({
 		url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
@@ -214,6 +234,7 @@ app.populateGallery = function(response) {
 		let i = 0;
 		let countDown = 18;
 		modArray = response.drinks.slice(0, 18);
+		//disabling buttons while the gallery populates, don't want overzealous users over clicking and sending a billion API calls
 		let anotherCount = 0;
 		$(`button[type="submit"]`).prop("disabled", true);
 		modArray.forEach(function(item) {
@@ -255,6 +276,7 @@ app.populateGallery = function(response) {
 				$(".drinkGallery ul").append(htmlToAppend);
 				countDown -= 1;
 				anotherCount++;
+				//re-enabling the button once the gallery is loaded
 				if (anotherCount >= modArray.length) {
 					$(`button[type="submit"]`).prop("disabled", false);
 				}
@@ -264,6 +286,7 @@ app.populateGallery = function(response) {
 	}
 };
 
+//This function ensures the smooth transition between the more detailed drink spotlight and the gallery.
 app.switchToGallery = function() {
 	$(".drinkGallery ul").empty();
 	$(".drinkGallery").css("opacity", "1");
@@ -276,6 +299,7 @@ app.switchToGallery = function() {
 	}, 400);
 };
 
+//This function makes it so that in additional to clicking pressing down the enter key also works for clicking around
 app.accessibleSpotlight = function() {
 	$(".drinkGallery ul, .relatedDrinks ul").on("keyup", "li", function(event) {
 		if (event.which === 13) {
@@ -346,6 +370,7 @@ app.populateSpotlight = function() {
 	});
 };
 
+//This function ensures the smooth transition between the more detailed drink spotlight and the gallery.
 app.switchToSpotlight = function() {
 	$(".drinkGallery").css("opacity", "0");
 	$(".drinkSpotlight").css("opacity", "1");
@@ -446,6 +471,7 @@ app.mockTail = function() {
 	});
 };
 
+//hamburger menu functionality
 app.hamburger = function() {
 	$(".hamburger").on("click", function() {
 		$(".drinkFilters").toggleClass("showDrinksFilter");
