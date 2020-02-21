@@ -8,10 +8,13 @@
 	@include maxWidth1050 {
 		width: 95%;
 	}
+	@include maxWidth500 {
+		width: 100%;
+	}
 }
 header {
 	top: 0;
-	background-image: url(../assets/mainFinal.png);
+	background-image: url(../assets/headerImage.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -22,8 +25,24 @@ header {
 	opacity: 0;
 	animation: appear 2s linear forwards;
 	z-index: 0;
+
+	h2 {
+		color: $white;
+		position: absolute;
+		text-align: right;
+		font-size: 3rem;
+		opacity: 0.2;
+		margin-top: 100px;
+		right: 0px;
+		animation: slideInRight 40s ease 0.5s forwards;
+
+		@include maxWidth630 {
+			font-size: 2rem;
+		}
+	}
 }
 
+// fade it all in nice and cinematic-like
 .appearJS {
 	animation: appear 0.5s ease forwards;
 }
@@ -51,40 +70,6 @@ h1 {
 	z-index: 1;
 }
 
-header h2 {
-	color: $white;
-	position: absolute;
-	text-align: right;
-	font-size: 3rem;
-	opacity: 0.2;
-	margin-top: 100px;
-	right: 0px;
-	animation: slideInRight 40s ease 0.5s forwards;
-}
-
-@keyframes slideInLeft {
-	0% {
-		margin: 20px 0;
-		top: 300px;
-		position: relative;
-		left: -100px;
-		opacity: 0;
-	}
-	99% {
-		top: 300px;
-		left: 0;
-		opacity: 1;
-		position: relative;
-	}
-	100% {
-		margin: 20px 0;
-		top: 320.4px;
-		position: sticky;
-		left: 0px;
-		opacity: 1;
-	}
-}
-
 @keyframes slideInRight {
 	0% {
 		right: 0px;
@@ -103,7 +88,7 @@ header h2 {
 	height: 45%;
 	width: 40%;
 	opacity: 0;
-	background: url(../assets/main2.png);
+	background: url(../assets/mainDeco.png);
 	background-size: cover;
 	background-position-y: top;
 	background-position-x: 40%;
@@ -113,6 +98,7 @@ header h2 {
 	transform: translateY(20vh);
 }
 
+// make the drink come up and bob
 @keyframes slideUp {
 	0% {
 		z-index: 0;
@@ -146,6 +132,7 @@ header h2 {
 	}
 }
 
+// scroll indicator
 .decoration2 {
 	@include flexCol;
 	position: fixed;

@@ -5,6 +5,11 @@ html {
 	margin: 0;
 }
 
+main {
+	height: auto;
+	position: relative;
+}
+
 h1,
 h2,
 h3,
@@ -43,5 +48,9 @@ ol {
 
 	@include maxWidth1050 {
 		width: 95%;
+	}
+
+	@include maxWidth500 {
+		width: 100%;
 	}
 }

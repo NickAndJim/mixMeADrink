@@ -16,6 +16,7 @@
 		height: 100vh;
 		transition: left 0.5s;
 		border-radius: 0;
+		padding-top: 40px;
 		z-index: 5;
 
 		&.showDrinksFilter {
@@ -25,30 +26,60 @@
 			padding: 1%;
 		}
 	}
-}
-.hamburger {
-	background: $accent;
-	border-radius: 5px;
-	position: fixed;
-	top: 10px;
-	right: 20px;
-	z-index: 10;
-	width: 40px;
-	height: 40px;
-	.bar {
-		display: inline-block;
-		position: absolute;
-		background: $white;
-		margin: 1px 0;
-		height: 2px;
-		width: 30px;
-		left: 5px;
-	}
-	.boar1 {
+
+	.hamburger {
+		display: block;
+		background: $accent2;
+		border: 2px solid $white;
+		box-shadow: 0 0 0 2px $accent2;
+		border-radius: 50px;
+		padding: 2px;
+		position: fixed;
 		top: 5px;
-	}
-	.bar2 {
-		bottom: 5px;
+		right: 20px;
+		z-index: 10;
+		width: 45px;
+		height: 45px;
+
+		&:focus {
+			outline: 4px dotted $secondary;
+		}
+
+		.bar {
+			display: inline-block;
+			position: absolute;
+			background: $white;
+			margin: 1px 0;
+			height: 2px;
+			line-height: 0;
+			width: 25px;
+			left: 9px;
+			border-radius: 2px;
+		}
+		.bar1 {
+			top: 12.5px;
+			transition: top 0.5s, transform 0.5s;
+		}
+		.bar2 {
+			opacity: 1;
+			top: 20px;
+			transition: opacity 0.5s;
+		}
+		.bar3 {
+			bottom: 10.5px;
+			transition: top 0.5s, transform 0.5s;
+		}
+		.bar1.animate {
+			top: 20px;
+			transform: rotate(405deg);
+		}
+		.bar2.animate {
+			opacity: 0;
+		}
+		.bar3.animate {
+			top: 20px;
+			transform: rotate(495deg);
+		}
 	}
 }
 
@@ -70,6 +101,8 @@
 @media (max-width: 500px) {
 	h1 {
 		font-size: 3rem;
+		margin: 5px 10px;
+		width: calc(100% - 20px);
 	}
 	.drinkSpotlight {
 		h2 {
@@ -87,10 +120,12 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 				z-index: 2;
-				font-size: 3rem;
+				font-size: 2.5rem;
 				text-shadow: 2px 2px 2px black;
 				color: $accent;
 				text-align: center;
+				word-wrap: break-word;
+				width: 90%;
 			}
 			img {
 				object-fit: cover;
@@ -116,5 +151,9 @@
 		.instructionParent {
 			margin-top: 20px;
 		}
+	}
+
+	.relatedDrinks h3 {
+		word-wrap: break-word;
 	}
 }

@@ -12,8 +12,10 @@ app.init = function() {
 	// separated these so it runs once on load
 	app.getDrinksByRandom();
 	app.getDrinksByRandomListenerEvent();
+
 	app.mockTail();
 	app.hamburger();
+	app.mobileFunctionality();
 };
 
 $(function() {
@@ -65,7 +67,7 @@ app.getDrinksByName = function() {
 				if (response.drinks === null) {
 					//This catches when the response returned is empty
 					app.switchToGallery();
-					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+					htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
 					$(".drinkGallery ul").append(htmlToAppend);
 					console.log(htmlToAppend);
 				} else {
@@ -74,7 +76,7 @@ app.getDrinksByName = function() {
 			} else {
 				//This catches when the user submits an empty input
 				app.switchToGallery();
-				htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
+				htmlToAppend = `<h2 class="noResults">Your search was empty, please alter your search.</h2>`;
 				$(".drinkGallery ul").append(htmlToAppend);
 			}
 		});
@@ -99,14 +101,14 @@ app.getDrinksByAlcohol = function() {
 				} else {
 					//This catches when the user submits an empty input
 					app.switchToGallery();
-					htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
+					htmlToAppend = `<h2 class="noResults">Your search was empty, please alter your search.</h2>`;
 					$(".drinkGallery ul").append(htmlToAppend);
 				}
 			})
 			.fail(function(response) {
 				//This catches when the response returned is empty
 				app.switchToGallery();
-				htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+				htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
 				$(".drinkGallery ul").append(htmlToAppend);
 			});
 	});
@@ -120,8 +122,8 @@ app.getDrinksByIngredient = function() {
 
 		if (!userIngredientInput1 && !userIngredientInput2) {
 			app.switchToGallery();
-      htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
-      $(".drinkGallery ul").append(htmlToAppend);
+			htmlToAppend = `<h2 class="noResults">Your search was empty, please alter your search.</h2>`;
+			$(".drinkGallery ul").append(htmlToAppend);
 		}
 
 		const $call1 = $.ajax({
@@ -148,43 +150,43 @@ app.getDrinksByIngredient = function() {
 				//This catches when the response is empty
 				.fail(function(response) {
 					app.switchToGallery();
-					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+					htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
 					$(".drinkGallery ul").append(htmlToAppend);
 				});
 		} else if (!userIngredientInput1 && userIngredientInput2) {
 			$call2
-        .then(function(response2) {
-          app.populateGallery(response2);
-        })
-        //This catches when the response is empty
-        .fail(function(response) {
-          app.switchToGallery();
-          htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
-          $(".drinkGallery ul").append(htmlToAppend);
-        });
+				.then(function(response2) {
+					app.populateGallery(response2);
+				})
+				//This catches when the response is empty
+				.fail(function(response) {
+					app.switchToGallery();
+					htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
+					$(".drinkGallery ul").append(htmlToAppend);
+				});
 		} else if (userIngredientInput1 && userIngredientInput2) {
 			const finalArray = { drinks: [] };
 			$.when($call1, $call2)
-        .done(function(drinksArray1, drinksArray2) {
-          differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
-            drinksArray2[0].drinks.forEach(function(itemFromArray2) {
-              if (itemFromArray1.idDrink === itemFromArray2.idDrink) {
-                finalArray.drinks.push(itemFromArray1);
-              }
-            });
-          });
-          app.populateGallery(finalArray);
+				.done(function(drinksArray1, drinksArray2) {
+					differentArray = drinksArray1[0].drinks.filter(function(itemFromArray1) {
+						drinksArray2[0].drinks.forEach(function(itemFromArray2) {
+							if (itemFromArray1.idDrink === itemFromArray2.idDrink) {
+								finalArray.drinks.push(itemFromArray1);
+							}
+						});
+					});
+					app.populateGallery(finalArray);
 				})
 				//This catches when the response is empty
-        .fail(function(response) {
-          app.switchToGallery();
-          htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
-          $(".drinkGallery ul").append(htmlToAppend);
-        });
+				.fail(function(response) {
+					app.switchToGallery();
+					htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
+					$(".drinkGallery ul").append(htmlToAppend);
+				});
 		}
 	});
 };
-//This function will bring the user away from the user input section and be presented with a drink construction information page on a random drink with the data obtained from an ajax call
+//This function will bring the user away from the user input section and be presented with a drink information page on a random drink with the data obtained from an ajax call
 app.getDrinksByRandomListenerEvent = function() {
 	$(".feelingLuckyButton").on("click", function(event) {
 		event.preventDefault();
@@ -353,7 +355,7 @@ app.populateSpotlight = function() {
 					}
 				}
 			}
-
+			// finally we have all the info needed to populate things
 			$(".howToMixIt").html(drinkInstruction);
 			$(".drinkSpotlight .drinkName").text(drinkName);
 			$(".drinkSpotlight .glassType").text(drinkGlass);
@@ -474,7 +476,29 @@ app.mockTail = function() {
 //hamburger menu functionality
 app.hamburger = function() {
 	$(".hamburger").on("click", function() {
+		$(".drinkFilters button").addClass("mobileButton");
 		$(".drinkFilters").toggleClass("showDrinksFilter");
 		$("body").toggleClass("hamburgerOpen");
+		$(".hamburger")
+			.children(".bar1, .bar2, .bar3")
+			.toggleClass("animate");
+		// otherwise users have to tab through the entire form before they can focus on the related drinks
+		if ($(".drinkFilters").hasClass("showDrinksFilter") == true) {
+			$(".drinkFilters button, .drinkFilters input").attr("tabindex", "0");
+		} else {
+			$(".drinkFilters button, .drinkFilters input").attr("tabindex", "-1");
+		}
+	});
+};
+
+// make sure the menu disappears when a button is clicked
+app.mobileFunctionality = function() {
+	$(".drinkFilters").on("click", ".mobileButton", function() {
+		$(".drinkFilters").toggleClass("showDrinksFilter");
+		$("body").toggleClass("hamburgerOpen");
+		$(".hamburger")
+			.children(".bar1, .bar2, .bar3")
+			.toggleClass("animate");
+		$(".drinkFilters button, .drinkFilters input").attr("tabindex", "-1");
 	});
 };

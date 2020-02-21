@@ -16,7 +16,7 @@
 	h2.mobile {
 		display: none;
 	}
-
+	// needed a subcontainer here because the element has scrolling but we're flexing elements within. flex and overflow don't play nicely on the same div.
 	.subContainerSpotlight {
 		@include flexRow();
 		flex-wrap: wrap;

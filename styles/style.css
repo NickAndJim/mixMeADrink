@@ -243,6 +243,11 @@ html {
   margin: 0;
 }
 
+main {
+  height: auto;
+  position: relative;
+}
+
 h1,
 h2,
 h3,
@@ -286,6 +291,12 @@ ol {
   }
 }
 
+@media (max-width: 500px) {
+  .wrapper {
+    width: 100%;
+  }
+}
+
 .headerWrapper {
   max-width: 1080px;
   width: 80vw;
@@ -300,9 +311,15 @@ ol {
   }
 }
 
+@media (max-width: 500px) {
+  .headerWrapper {
+    width: 100%;
+  }
+}
+
 header {
   top: 0;
-  background-image: url(../assets/mainFinal.png);
+  background-image: url(../assets/headerImage.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -314,6 +331,24 @@ header {
   -webkit-animation: appear 2s linear forwards;
           animation: appear 2s linear forwards;
   z-index: 0;
+}
+
+header h2 {
+  color: #f6f6f6;
+  position: absolute;
+  text-align: right;
+  font-size: 3rem;
+  opacity: 0.2;
+  margin-top: 100px;
+  right: 0px;
+  -webkit-animation: slideInRight 40s ease 0.5s forwards;
+          animation: slideInRight 40s ease 0.5s forwards;
+}
+
+@media (max-width: 630px) {
+  header h2 {
+    font-size: 2rem;
+  }
 }
 
 .appearJS {
@@ -355,66 +390,6 @@ h1 {
   z-index: 1;
 }
 
-header h2 {
-  color: #f6f6f6;
-  position: absolute;
-  text-align: right;
-  font-size: 3rem;
-  opacity: 0.2;
-  margin-top: 100px;
-  right: 0px;
-  -webkit-animation: slideInRight 40s ease 0.5s forwards;
-          animation: slideInRight 40s ease 0.5s forwards;
-}
-
-@-webkit-keyframes slideInLeft {
-  0% {
-    margin: 20px 0;
-    top: 300px;
-    position: relative;
-    left: -100px;
-    opacity: 0;
-  }
-  99% {
-    top: 300px;
-    left: 0;
-    opacity: 1;
-    position: relative;
-  }
-  100% {
-    margin: 20px 0;
-    top: 320.4px;
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0px;
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    margin: 20px 0;
-    top: 300px;
-    position: relative;
-    left: -100px;
-    opacity: 0;
-  }
-  99% {
-    top: 300px;
-    left: 0;
-    opacity: 1;
-    position: relative;
-  }
-  100% {
-    margin: 20px 0;
-    top: 320.4px;
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0px;
-    opacity: 1;
-  }
-}
-
 @-webkit-keyframes slideInRight {
   0% {
     right: 0px;
@@ -444,7 +419,7 @@ header h2 {
   height: 45%;
   width: 40%;
   opacity: 0;
-  background: url(../assets/main2.png);
+  background: url(../assets/mainDeco.png);
   background-size: cover;
   background-position-y: top;
   background-position-x: 40%;
@@ -570,11 +545,6 @@ header h2 {
           animation-delay: 3s;
 }
 
-main {
-  height: auto;
-  position: relative;
-}
-
 .landingPage {
   display: -ms-grid;
   display: grid;
@@ -592,14 +562,18 @@ main {
   }
 }
 
+.hamburger {
+  display: none;
+}
+
 .drinkFilters {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: form;
   position: relative;
-  background: -webkit-gradient(linear, left top, left bottom, from(#23232322), to(#23232322)), url(../assets/filterImage2);
-  background: linear-gradient(to bottom, #23232322, #23232322), url(../assets/filterImage2);
+  background: -webkit-gradient(linear, left top, left bottom, from(#23232322), to(#23232322)), url(../assets/filterImage.jpg);
+  background: linear-gradient(to bottom, #23232322, #23232322), url(../assets/filterImage.jpg);
   background-size: cover;
   background-position: center;
   height: 84vh;
@@ -714,6 +688,14 @@ main {
   border-radius: 10px;
 }
 
+.drinkGallery h2.noResults {
+  margin: 5vh auto;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #8ce8fb;
+}
+
 .drinkGallery ul {
   overflow-y: scroll;
   display: -webkit-box;
@@ -799,7 +781,7 @@ footer {
   position: relative;
   width: 100%;
   bottom: 0;
-  background: #1f1f1f;
+  background: black;
   margin: 10px 0 0 0;
   padding: 2px;
 }
@@ -1053,6 +1035,7 @@ footer p {
     -webkit-transition: left 0.5s;
     transition: left 0.5s;
     border-radius: 0;
+    padding-top: 40px;
     z-index: 5;
   }
   .drinkFilters.showDrinksFilter {
@@ -1061,35 +1044,68 @@ footer p {
   .drinkFilters input {
     padding: 1%;
   }
-}
-
-.hamburger {
-  background: #8ce8fb;
-  border-radius: 5px;
-  position: fixed;
-  top: 10px;
-  right: 20px;
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-}
-
-.hamburger .bar {
-  display: inline-block;
-  position: absolute;
-  background: #f6f6f6;
-  margin: 1px 0;
-  height: 2px;
-  width: 30px;
-  left: 5px;
-}
-
-.hamburger .boar1 {
-  top: 5px;
-}
-
-.hamburger .bar2 {
-  bottom: 5px;
+  .hamburger {
+    display: block;
+    background: #fcd29f;
+    border: 2px solid #f6f6f6;
+    -webkit-box-shadow: 0 0 0 2px #fcd29f;
+            box-shadow: 0 0 0 2px #fcd29f;
+    border-radius: 50px;
+    padding: 2px;
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+  }
+  .hamburger:focus {
+    outline: 4px dotted #f9dec9;
+  }
+  .hamburger .bar {
+    display: inline-block;
+    position: absolute;
+    background: #f6f6f6;
+    margin: 1px 0;
+    height: 2px;
+    line-height: 0;
+    width: 25px;
+    left: 9px;
+    border-radius: 2px;
+  }
+  .hamburger .bar1 {
+    top: 12.5px;
+    -webkit-transition: top 0.5s, -webkit-transform 0.5s;
+    transition: top 0.5s, -webkit-transform 0.5s;
+    transition: top 0.5s, transform 0.5s;
+    transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  }
+  .hamburger .bar2 {
+    opacity: 1;
+    top: 20px;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+  .hamburger .bar3 {
+    bottom: 10.5px;
+    -webkit-transition: top 0.5s, -webkit-transform 0.5s;
+    transition: top 0.5s, -webkit-transform 0.5s;
+    transition: top 0.5s, transform 0.5s;
+    transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s;
+  }
+  .hamburger .bar1.animate {
+    top: 20px;
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+  }
+  .hamburger .bar2.animate {
+    opacity: 0;
+  }
+  .hamburger .bar3.animate {
+    top: 20px;
+    -webkit-transform: rotate(495deg);
+            transform: rotate(495deg);
+  }
 }
 
 @media (max-width: 630px) {
@@ -1107,6 +1123,8 @@ footer p {
 @media (max-width: 500px) {
   h1 {
     font-size: 3rem;
+    margin: 5px 10px;
+    width: calc(100% - 20px);
   }
   .drinkSpotlight h2 {
     display: none;
@@ -1125,10 +1143,12 @@ footer p {
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     z-index: 2;
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-shadow: 2px 2px 2px black;
     color: #8ce8fb;
     text-align: center;
+    word-wrap: break-word;
+    width: 90%;
   }
   .drinkSpotlight .imgContainer img {
     -o-object-fit: cover;
@@ -1154,5 +1174,8 @@ footer p {
   }
   .drinkSpotlight .instructionParent {
     margin-top: 20px;
+  }
+  .relatedDrinks h3 {
+    word-wrap: break-word;
   }
 }
