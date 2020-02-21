@@ -10,7 +10,10 @@
 	opacity: 1;
 	transition: opacity 0.4s;
 	z-index: 1;
-	background: $backing;
+	background: linear-gradient(to bottom right, #222255cc, #332233cc), url(../assets/gallerySpotlight.jpg);
+	background-position: bottom;
+	background-size: cover;
+
 	overflow-y: scroll;
 
 	h2.mobile {

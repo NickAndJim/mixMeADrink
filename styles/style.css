@@ -684,7 +684,10 @@ h1 {
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 1;
-  background: #313131;
+  background: -webkit-gradient(linear, left top, right bottom, from(#222255cc), to(#332233cc)), url(../assets/gallerySpotlight.jpg);
+  background: linear-gradient(to bottom right, #222255cc, #332233cc), url(../assets/gallerySpotlight.jpg);
+  background-size: cover;
+  background-position: bottom;
   border-radius: 10px;
 }
 
@@ -812,7 +815,10 @@ footer p {
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   z-index: 1;
-  background: #313131;
+  background: -webkit-gradient(linear, left top, right bottom, from(#222255cc), to(#332233cc)), url(../assets/gallerySpotlight.jpg);
+  background: linear-gradient(to bottom right, #222255cc, #332233cc), url(../assets/gallerySpotlight.jpg);
+  background-position: bottom;
+  background-size: cover;
   overflow-y: scroll;
 }
 

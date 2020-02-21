@@ -43,10 +43,12 @@ app.drinkGlass = function() {
 			$(".decoration")
 				.stop()
 				.animate({ top: "68vh" }, 350);
+			$(".decoration2").css("opacity", 0);
 		} else {
 			$(".decoration")
 				.stop()
 				.animate({ top: "60vh" }, 350);
+			$(".decoration2").css("opacity", 1);
 		}
 	});
 };
