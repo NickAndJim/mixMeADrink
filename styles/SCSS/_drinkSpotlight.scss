@@ -13,6 +13,10 @@
 	background: $backing;
 	overflow-y: scroll;
 
+	h2.mobile {
+		display: none;
+	}
+
 	.subContainerSpotlight {
 		@include flexRow();
 		flex-wrap: wrap;
@@ -32,6 +36,7 @@
 		opacity: 1;
 		transition: opacity 0.4s;
 		z-index: 1;
+
 		img {
 			width: 100%;
 			object-fit: cover;

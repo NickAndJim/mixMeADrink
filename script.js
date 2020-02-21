@@ -2,6 +2,7 @@ app = {};
 
 app.init = function() {
 	app.smoothScrollFromHeader();
+	app.drinkGlass();
 	app.getDrinksByName();
 	app.getDrinksByAlcohol();
 	app.getDrinksByIngredient();
@@ -28,6 +29,23 @@ app.smoothScrollFromHeader = function() {
 			},
 			"slow"
 		);
+	});
+};
+
+// setting position of the drink glass to be visible when i'm at the bottom of the header
+app.drinkGlass = function() {
+	$(window).on("scroll", function() {
+		let scrollTop = $(window).scrollTop();
+
+		if (scrollTop >= 100) {
+			$(".decoration")
+				.stop()
+				.animate({ top: "68vh" }, 350);
+		} else {
+			$(".decoration")
+				.stop()
+				.animate({ top: "60vh" }, 350);
+		}
 	});
 };
 //Function to give the user a selection of drinks based on their search parameter displayed to the right of the userInput
@@ -366,12 +384,6 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 	});
 };
 
-app.hamburger = function() {
-	$(".hamburger").on("click", function() {
-		$(".drinkFilters").toggleClass("showDrinksFilter");
-	});
-};
-
 //this function randomizes the order of an array
 app.shuffle = function(array1) {
 	let ctr = array1.length,
@@ -404,23 +416,9 @@ app.mockTail = function() {
 	});
 };
 
-// $("window").scroll(function() {
-// 	console.log();
-// 	// check window height vs element height
-// 	// look into debouncing
-// 	// look into throttle maybe too to limit function calls
-// });
-
-$(window).on("scroll", function() {
-	let scrollTop = $(window).scrollTop();
-
-	if (scrollTop >= 100) {
-		$(".decoration")
-			.stop()
-			.animate({ top: "68vh" }, 350);
-	} else {
-		$(".decoration")
-			.stop()
-			.animate({ top: "60vh" }, 350);
-	}
-});
+app.hamburger = function() {
+	$(".hamburger").on("click", function() {
+		$(".drinkFilters").toggleClass("showDrinksFilter");
+		$("body").toggleClass("hamburgerOpen");
+	});
+};

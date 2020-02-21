@@ -834,6 +834,10 @@ footer p {
   overflow-y: scroll;
 }
 
+.drinkSpotlight h2.mobile {
+  display: none;
+}
+
 .drinkSpotlight .subContainerSpotlight {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1033,31 +1037,85 @@ footer p {
 }
 
 @media (max-width: 750px) {
-  .drinkSpotlight,
-  .drinkGallery {
-    height: auto;
-    overflow-y: initial;
+  body.hamburgerOpen {
+    overflow-y: hidden;
+    height: 100vh;
   }
   .relatedDrinks {
-    margin: 0 auto;
+    margin: 0 auto 10px;
   }
   .drinkFilters {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 100vw;
-    z-index: 100;
     width: 100%;
-    height: 84vh;
+    height: 100vh;
     -webkit-transition: left 0.5s;
     transition: left 0.5s;
+    border-radius: 0;
+    z-index: 5;
   }
   .drinkFilters.showDrinksFilter {
     left: 0;
   }
+  .drinkFilters input {
+    padding: 1%;
+  }
 }
 
 .hamburger {
-  position: absolute;
-  top: 0;
-  right: 0;
+  background: #8ce8fb;
+  padding: 4px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 10;
+}
+
+@media (max-width: 630px) {
+  h1 {
+    font-size: 4rem;
+  }
+  .drinkSpotlight h2 {
+    font-size: 2.5rem;
+  }
+  .drinkSpotlight p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .drinkSpotlight h2 {
+    display: none;
+  }
+  .drinkSpotlight .imgContainer {
+    position: relative;
+    float: none;
+    width: 100%;
+    height: 200px;
+  }
+  .drinkSpotlight .imgContainer h2.mobile {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    z-index: 2;
+    font-size: 3rem;
+    text-shadow: 2px 2px 2px black;
+    color: #8ce8fb;
+    text-align: center;
+  }
+  .drinkSpotlight .imgContainer img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 100%;
+    -o-object-position: top;
+       object-position: top;
+  }
+  h1 {
+    font-size: 3rem;
+  }
 }

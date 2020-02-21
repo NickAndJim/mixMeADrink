@@ -29,12 +29,14 @@ $bodyStack: serif;
 }
 
 //media query mixins
+// using
 @mixin maxWidth1050 {
 	@media (max-width: 1050px) {
 		@content;
 	}
 }
 
+// using
 @mixin maxWidth930 {
 	@media (max-width: 930px) {
 		@content;
@@ -42,12 +44,14 @@ $bodyStack: serif;
 }
 
 // this will be a major break point
+
 @mixin maxWidth750 {
 	@media (max-width: 750px) {
 		@content;
 	}
 }
 
+// using this
 @mixin maxWidth630 {
 	@media (max-width: 630px) {
 		@content;
