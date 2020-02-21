@@ -4,7 +4,6 @@
 	grid-area: gallery;
 	position: relative;
 	width: 100%;
-	// height: 600px;
 	height: 84vh;
 	border-radius: 10px;
 	padding: 20px;
@@ -14,11 +13,12 @@
 	background: $backing;
 	overflow-y: scroll;
 
-	.subContainer {
+	.subContainerSpotlight {
 		@include flexRow();
 		flex-wrap: wrap;
 		align-content: center;
 	}
+
 	.focusDrink {
 		width: 100%;
 	}
@@ -36,7 +36,7 @@
 			width: 100%;
 			object-fit: cover;
 			border-radius: 10px;
-			box-shadow: 0 0 5px 2px $primary;
+			border: 2px solid $accent;
 		}
 	}
 

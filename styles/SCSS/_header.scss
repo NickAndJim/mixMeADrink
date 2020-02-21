@@ -3,7 +3,7 @@
 	width: 80vw;
 	margin: 0 auto;
 	position: relative;
-	height: 120vh;
+	height: 100vh;
 
 	@include maxWidth1050 {
 		width: 95%;
@@ -15,7 +15,7 @@ header {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	height: 120vh;
+	height: 100vh;
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
@@ -45,7 +45,7 @@ h1 {
 	width: 500px;
 	font-size: 6rem;
 	line-height: 1;
-	margin: 20px 0 10px;
+	margin: 0 0 10px;
 	color: $accent;
 	text-shadow: 1px 1px 1px black;
 	z-index: 1;
@@ -53,7 +53,7 @@ h1 {
 
 header h2 {
 	color: $white;
-	position: relative;
+	position: absolute;
 	text-align: right;
 	font-size: 3rem;
 	opacity: 0.2;
@@ -100,10 +100,8 @@ header h2 {
 	position: absolute;
 	right: 0;
 	bottom: -400px;
-	// height: 350px;
-	// width: 350px;
-	height: 35%;
-	width: 35%;
+	height: 45%;
+	width: 40%;
 	opacity: 0;
 	background: url(../assets/main2.png);
 	background-size: cover;
@@ -112,6 +110,7 @@ header h2 {
 	animation: slideUp 3.5s forwards ease;
 	animation-delay: 1s;
 	z-index: 0;
+	transform: translateY(20vh);
 }
 
 @keyframes slideUp {
@@ -149,10 +148,12 @@ header h2 {
 
 .decoration2 {
 	@include flexCol;
-	position: relative;
+	position: fixed;
 	color: $accent;
 	font-size: 4rem;
-	margin: 50vh auto 0;
+	top: 80vh;
+	left: 50%;
+	transform: translateX(-50%);
 
 	span {
 		line-height: 0.5;

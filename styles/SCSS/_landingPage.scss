@@ -19,31 +19,18 @@ main {
 .drinkFilters {
 	grid-area: form;
 	position: relative;
-	// background: url(../assets/backsplash.png), black;
-	background: linear-gradient(to bottom, #23232322, #23232322 ), url(../assets/filterImage2);
-	// box-shadow: inset 20px 20px 40px black, inset -20px -20px 40px black;
+	background: linear-gradient(to bottom, #23232322, #23232322), url(../assets/filterImage2);
 	background-size: cover;
 	background-position: center;
-	@include flexCol(space-around);
-	align-items: baseline;
-	// height: 600px;
 	height: 84vh;
-	padding: 10px;
+	padding: 20px 10px;
 	border-radius: 10px;
 	overflow-y: scroll;
 
-	// &:before {
-	// 	content: " ";
-	// 	position: absolute;
-	// 	background: $white;
-	// 	border-radius: 10px;
-	// 	top: 0;
-	// 	left: 0;
-	// 	height: 100%;
-	// 	width: 100%;
-	// 	opacity: 0.2;
-	// 	z-index: 0;
-	// }
+	.subContainerFilter {
+		@include flexCol(space-around);
+		width: 100%;
+	}
 
 	form {
 		font-family: $mainStack;
@@ -52,7 +39,7 @@ main {
 		z-index: 1;
 		@include flexCol(space-around);
 		align-items: flex-start;
-		margin:2px 0;
+		margin: 2px 0;
 	}
 
 	button,
@@ -66,10 +53,6 @@ main {
 		}
 	}
 
-	button {
-		align-self: center;
-	}
-
 	label,
 	h2 {
 		color: $tertiary;
@@ -81,7 +64,7 @@ main {
 		padding: 3.5%;
 	}
 	button {
-		padding: 2.5%;
+		padding: 1.5%;
 		margin: 7.5px auto;
 		background: $accent;
 		font-size: 2rem;
@@ -109,7 +92,6 @@ main {
 	grid-area: gallery;
 	position: relative;
 	display: block;
-	// height: 600px;
 	height: 84vh;
 	padding: 10px;
 	opacity: 1;
@@ -119,11 +101,11 @@ main {
 	border-radius: 10px;
 
 	ul {
+		overflow-y: scroll;
 		@include flexRow(flex-start);
 		flex-wrap: wrap;
 		align-content: flex-start;
 		height: calc(100% - 10px);
-		overflow-y: scroll;
 		transition: opacity 0.4s;
 	}
 

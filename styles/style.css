@@ -239,6 +239,8 @@ html {
 html {
   font-size: 62.5%;
   background: black;
+  padding: 0;
+  margin: 0;
 }
 
 h1,
@@ -289,7 +291,7 @@ ol {
   width: 80vw;
   margin: 0 auto;
   position: relative;
-  height: 120vh;
+  height: 100vh;
 }
 
 @media (max-width: 1050px) {
@@ -304,7 +306,7 @@ header {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 120vh;
+  height: 100vh;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -347,7 +349,7 @@ h1 {
   width: 500px;
   font-size: 6rem;
   line-height: 1;
-  margin: 20px 0 10px;
+  margin: 0 0 10px;
   color: #8ce8fb;
   text-shadow: 1px 1px 1px black;
   z-index: 1;
@@ -355,7 +357,7 @@ h1 {
 
 header h2 {
   color: #f6f6f6;
-  position: relative;
+  position: absolute;
   text-align: right;
   font-size: 3rem;
   opacity: 0.2;
@@ -439,8 +441,8 @@ header h2 {
   position: absolute;
   right: 0;
   bottom: -400px;
-  height: 35%;
-  width: 35%;
+  height: 45%;
+  width: 40%;
   opacity: 0;
   background: url(../assets/main2.png);
   background-size: cover;
@@ -451,6 +453,8 @@ header h2 {
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
   z-index: 0;
+  -webkit-transform: translateY(20vh);
+          transform: translateY(20vh);
 }
 
 @-webkit-keyframes slideUp {
@@ -521,10 +525,13 @@ header h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
+  position: fixed;
   color: #8ce8fb;
   font-size: 4rem;
-  margin: 50vh auto 0;
+  top: 80vh;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .decoration2 span {
@@ -575,7 +582,7 @@ main {
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "form gallery gallery" "form gallery gallery";
+      grid-template-areas: "form gallery gallery" "form gallery gallery";
   grid-gap: 15px;
 }
 
@@ -595,6 +602,13 @@ main {
   background: linear-gradient(to bottom, #23232322, #23232322), url(../assets/filterImage2);
   background-size: cover;
   background-position: center;
+  height: 84vh;
+  padding: 20px 10px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.drinkFilters .subContainerFilter {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -607,13 +621,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
-  height: 84vh;
-  padding: 10px;
-  border-radius: 10px;
-  overflow-y: scroll;
+  width: 100%;
 }
 
 .drinkFilters form {
@@ -652,12 +660,6 @@ main {
   outline: 4px dotted #f9dec9;
 }
 
-.drinkFilters button {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-}
-
 .drinkFilters label,
 .drinkFilters h2 {
   color: #f9f7f3;
@@ -670,7 +672,7 @@ main {
 }
 
 .drinkFilters button {
-  padding: 2.5%;
+  padding: 1.5%;
   margin: 7.5px auto;
   background: #8ce8fb;
   font-size: 2rem;
@@ -713,6 +715,7 @@ main {
 }
 
 .drinkGallery ul {
+  overflow-y: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -731,7 +734,6 @@ main {
   -ms-flex-line-pack: start;
       align-content: flex-start;
   height: calc(100% - 10px);
-  overflow-y: scroll;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
 }
@@ -832,7 +834,7 @@ footer p {
   overflow-y: scroll;
 }
 
-.drinkSpotlight .subContainer {
+.drinkSpotlight .subContainerSpotlight {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -873,8 +875,7 @@ footer p {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 5px 2px #3a405a;
-          box-shadow: 0 0 5px 2px #3a405a;
+  border: 2px solid #8ce8fb;
 }
 
 .drinkSpotlight h2 {
@@ -946,6 +947,10 @@ footer p {
   color: #8ce8fb;
   position: relative;
   left: 0;
+}
+
+.relatedDrinks {
+  margin: 20px 0;
 }
 
 .relatedDrinks h2 {
@@ -1049,4 +1054,10 @@ footer p {
   .drinkFilters.showDrinksFilter {
     left: 0;
   }
+}
+
+.hamburger {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -369,8 +369,8 @@ app.populateRelatedDrinks = function(ingredient1, ingredient2, originalID) {
 app.hamburger = function() {
 	$(".hamburger").on("click", function() {
 		$(".drinkFilters").toggleClass("showDrinksFilter");
-	})
-}
+	});
+};
 
 //this function randomizes the order of an array
 app.shuffle = function(array1) {
@@ -403,3 +403,24 @@ app.mockTail = function() {
 		});
 	});
 };
+
+// $("window").scroll(function() {
+// 	console.log();
+// 	// check window height vs element height
+// 	// look into debouncing
+// 	// look into throttle maybe too to limit function calls
+// });
+
+$(window).on("scroll", function() {
+	let scrollTop = $(window).scrollTop();
+
+	if (scrollTop >= 100) {
+		$(".decoration")
+			.stop()
+			.animate({ top: "68vh" }, 350);
+	} else {
+		$(".decoration")
+			.stop()
+			.animate({ top: "60vh" }, 350);
+	}
+});
