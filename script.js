@@ -62,7 +62,18 @@ app.getDrinksByName = function() {
 			}
 		}).then(function(response) {
 			if (userDrinksInput != "") {
-				app.populateGallery(response);
+				if (response.drinks === null) {
+					app.switchToGallery();
+					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+					$(".drinkGallery ul").append(htmlToAppend);
+					console.log(htmlToAppend);
+				} else {
+					app.populateGallery(response);
+				}
+			} else {
+				app.switchToGallery();
+				htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
+				$(".drinkGallery ul").append(htmlToAppend);
 			}
 		});
 	});
@@ -79,11 +90,21 @@ app.getDrinksByAlcohol = function() {
 			data: {
 				i: userAlcoholInput
 			}
-		}).then(function(response) {
-			if (userAlcoholInput != "") {
-				app.populateGallery(response);
-			}
-		});
+		})
+			.then(function(response) {
+				if (userAlcoholInput != "") {
+					app.populateGallery(response);
+				} else {
+					app.switchToGallery();
+					htmlToAppend = `<h1>Your search was empty, please alter your search.</h1>`;
+					$(".drinkGallery ul").append(htmlToAppend);
+				}
+			})
+			.fail(function(response) {
+				app.switchToGallery();
+				htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+				$(".drinkGallery ul").append(htmlToAppend);
+			});
 	});
 };
 //Function to give the user a selection of drinks based on their search parameter displayed to the right of the userInput. If the user gives 2 inputs, the selection given will only be drinks that contain both ingredients.
@@ -92,7 +113,6 @@ app.getDrinksByIngredient = function() {
 		e.preventDefault();
 		const userIngredientInput1 = $("#drinksByIngredient1").val();
 		const userIngredientInput2 = $("#drinksByIngredient2").val();
-
 		const $call1 = $.ajax({
 			url: "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
 			method: "GET",
@@ -109,16 +129,26 @@ app.getDrinksByIngredient = function() {
 				i: userIngredientInput2
 			}
 		});
-
 		if (userIngredientInput1 && !userIngredientInput2) {
-			$call1.then(function(response1) {
-				app.populateGallery(response1);
-				console.log(response1.drinks);
-			});
+			$call1
+				.then(function(response1) {
+					app.populateGallery(response1);
+				})
+				.fail(function(response) {
+					app.switchToGallery();
+					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+					$(".drinkGallery ul").append(htmlToAppend);
+				});
 		} else if (!userIngredientInput1 && userIngredientInput2) {
-			$call2.then(function(response2) {
-				app.populateGallery(response2);
-			});
+			$call2
+				.then(function(response2) {
+					app.populateGallery(response2);
+				})
+				.fail(function(response) {
+					app.switchToGallery();
+					htmlToAppend = `<h1>Your search didn't find anything, please alter your search.</h1>`;
+					$(".drinkGallery ul").append(htmlToAppend);
+				});
 		} else if (userIngredientInput1 && userIngredientInput2) {
 			const finalArray = { drinks: [] };
 			$.when($call1, $call2).done(function(drinksArray1, drinksArray2) {
@@ -129,7 +159,6 @@ app.getDrinksByIngredient = function() {
 						}
 					});
 				});
-				console.log(finalArray);
 				app.populateGallery(finalArray);
 			});
 		}
@@ -181,12 +210,12 @@ app.getDrinksByRandom = function() {
 //This function will populate the gallery to the right of the user input section with the data obtained from an ajax call
 app.populateGallery = function(response) {
 	app.switchToGallery();
-
 	if (response) {
 		let i = 0;
 		let countDown = 18;
 		modArray = response.drinks.slice(0, 18);
-
+		let anotherCount = 0;
+		$(`button[type="submit"]`).prop("disabled", true);
 		modArray.forEach(function(item) {
 			i++;
 			const drinkTitle = item.strDrink;
@@ -204,7 +233,6 @@ app.populateGallery = function(response) {
 					"align-content": "flex-start",
 					"justify-content": "flex-start"
 				});
-
 				htmlToAppend = `
 				<li data-id="${drinkID}" class="drinkGalleryItem appearJS wide" tabindex="0">
 				<h3>${drinkTitle}</h3>
@@ -216,7 +244,6 @@ app.populateGallery = function(response) {
 					"align-content": "flex-start",
 					"justify-content": "flex-start"
 				});
-
 				htmlToAppend = `
 			<li data-id="${drinkID}" class="drinkGalleryItem appearJS" tabindex="0">
 			<h3>${drinkTitle}</h3>
@@ -224,10 +251,13 @@ app.populateGallery = function(response) {
 			</li>
 			`;
 			}
-
 			setTimeout(function() {
 				$(".drinkGallery ul").append(htmlToAppend);
 				countDown -= 1;
+				anotherCount++;
+				if (anotherCount >= modArray.length) {
+					$(`button[type="submit"]`).prop("disabled", false);
+				}
 			}, 200 + i);
 			i += 200;
 		});

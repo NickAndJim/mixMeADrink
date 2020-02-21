@@ -346,7 +346,7 @@ h1 {
   position: sticky;
   display: block;
   top: 300px;
-  width: 500px;
+  width: 100%;
   font-size: 6rem;
   line-height: 1;
   margin: 0 0 10px;
@@ -1047,7 +1047,7 @@ footer p {
   .drinkFilters {
     position: fixed;
     top: 0;
-    left: 100vw;
+    left: 200vw;
     width: 100%;
     height: 100vh;
     -webkit-transition: left 0.5s;
@@ -1065,12 +1065,31 @@ footer p {
 
 .hamburger {
   background: #8ce8fb;
-  padding: 4px;
   border-radius: 5px;
   position: fixed;
   top: 10px;
   right: 20px;
   z-index: 10;
+  width: 40px;
+  height: 40px;
+}
+
+.hamburger .bar {
+  display: inline-block;
+  position: absolute;
+  background: #f6f6f6;
+  margin: 1px 0;
+  height: 2px;
+  width: 30px;
+  left: 5px;
+}
+
+.hamburger .boar1 {
+  top: 5px;
+}
+
+.hamburger .bar2 {
+  bottom: 5px;
 }
 
 @media (max-width: 630px) {
@@ -1086,6 +1105,9 @@ footer p {
 }
 
 @media (max-width: 500px) {
+  h1 {
+    font-size: 3rem;
+  }
   .drinkSpotlight h2 {
     display: none;
   }
@@ -1115,7 +1137,22 @@ footer p {
     -o-object-position: top;
        object-position: top;
   }
-  h1 {
-    font-size: 3rem;
+  .drinkSpotlight .ingredientParent {
+    float: none;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .drinkSpotlight .ingredientParent li {
+    margin: 0;
+  }
+  .drinkSpotlight .ingredientParent h3 {
+    float: none;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .drinkSpotlight .instructionParent {
+    margin-top: 20px;
   }
 }
