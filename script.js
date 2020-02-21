@@ -71,7 +71,6 @@ app.getDrinksByName = function() {
 					app.switchToGallery();
 					htmlToAppend = `<h2 class="noResults">Your search didn't find anything, please alter your search.</h2>`;
 					$(".drinkGallery ul").append(htmlToAppend);
-					console.log(htmlToAppend);
 				} else {
 					app.populateGallery(response);
 				}
@@ -469,7 +468,6 @@ app.mockTail = function() {
 		}).then(function(response) {
 			const arrayToRandom = response.drinks;
 			const finalArray = { drinks: app.shuffle(arrayToRandom) };
-			console.log(finalArray);
 			app.populateGallery(finalArray);
 		});
 	});
